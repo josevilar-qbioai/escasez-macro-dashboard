@@ -2,7 +2,7 @@
 
 🌐 **Language / Idioma:** [English](README.md) | Español
 
-**[→ Ver el dashboard en vivo](https://josevilar-qbioai.github.io/cartera-dashboard/)**
+**[→ Ver el dashboard en vivo](https://josevilar-qbioai.github.io/escasez-macro-dashboard/)**
 
 Dashboard de validación macro de la tesis de inversión *Cartera Escasez y Resiliencia*, actualizado automáticamente con datos de Yahoo Finance.
 

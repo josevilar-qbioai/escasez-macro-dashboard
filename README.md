@@ -2,7 +2,7 @@
 
 🌐 **Language / Idioma:** English | [Español](README_ES.md)
 
-**[→ View live dashboard](https://josevilar-qbioai.github.io/cartera-dashboard/)**
+**[→ View live dashboard](https://josevilar-qbioai.github.io/escasez-macro-dashboard/)**
 
 Macro validation dashboard for the *Scarcity and Resilience* investment thesis, updated automatically with Yahoo Finance data.
 
