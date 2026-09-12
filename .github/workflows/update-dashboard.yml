@@ -28,9 +28,11 @@ jobs:
           pip install yfinance pyyaml requests
 
       - name: Actualizar indicadores macro
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
           python3 scripts/macro_recorder.py -d historico --show
-        continue-on-error: true   # si Yahoo falla un día, no rompemos el pipeline
+        continue-on-error: true   # si Yahoo/FRED fallan un día, no rompemos el pipeline
 
       - name: Generar dashboard HTML
         run: |
