@@ -109,8 +109,8 @@ TESIS_YEARS   = 10
 
 TESIS_SCEN = {
     "BASE":      {"r": 0.20, "K": 2.0, "gamma": 0.50, "col": "#4ade80",  "col_bg": "#4ade8022"},
-    "ACELERADO": {"r": 0.25, "K": 4.0, "gamma": 0.90, "col": "#60a5fa",  "col_bg": "#60a5fa22"},
     "ÓPTIMO":    {"r": 0.30, "K": 6.0, "gamma": 1.50, "col": "#facc15",  "col_bg": "#facc1522"},
+    "ACELERADO": {"r": 0.25, "K": 4.0, "gamma": 0.90, "col": "#60a5fa",  "col_bg": "#60a5fa22"},
 }
 
 def phi_L(t, K, gamma, t0=TESIS_T0):
