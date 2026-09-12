@@ -312,6 +312,65 @@ ctx_html += ctx_row("EURUSD", "EUR/USD",    4)
 ctx_html += ctx_row("GOLD",   "Oro (USD)",  0, "$")
 ctx_html += ctx_row("OIL",    "Petróleo WTI", 1, "$")
 
+# ── Régimen macro (FRED) ───────────────────────────────────────────────────────
+def fred_row(k, label, cond, ok_fn, dec=2, unit=""):
+    v, c1m, _ = gv(k)
+    u  = ind.get(k, {}).get("chg_unit", "%")
+    ok = ok_fn(v, c1m) if v is not None else False
+    return signal_row("", label, fval(v, dec, unit), fchg(c1m, u), cond, ok)
+
+fred_present = ind.get("REAL10Y") is not None
+fred_html = ""
+if fred_present:
+    fred_html += fred_row("REAL10Y",   "Tipos reales 10a (TIPS)", "cae = favorable",       lambda v, c: c is not None and c <= 0, 2, "%")
+    fred_html += fred_row("M2",        "M2 EE.UU.",               "sube = favorable",      lambda v, c: c is not None and c >= 0, 1)
+    fred_html += fred_row("FEDBS",     "Balance Fed",             "sube = favorable",      lambda v, c: c is not None and c >= 0, 0)
+    fred_html += fred_row("HYSPREAD",  "Spread High Yield",       "< 4% = sano",           lambda v, c: v is not None and v < 4.0, 2, "%")
+    fred_html += fred_row("BREAKEVEN", "Inflación esperada 10a",  "sube = activos reales", lambda v, c: c is not None and c >= 0, 2, "%")
+
+fred_card = f"""
+  <div class="card">
+    <h2 style="color:#64748b">RÉGIMEN MACRO · FRED</h2>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr style="border-bottom:1px solid #1e293b">
+        <th style="padding:6px 10px;text-align:left;color:#475569;font-weight:500;font-size:.8em">SEÑAL</th>
+        <th style="padding:6px 10px;text-align:right;color:#475569;font-weight:500;font-size:.8em">VALOR</th>
+        <th style="padding:6px 10px;text-align:right;color:#475569;font-weight:500;font-size:.8em">1 MES</th>
+        <th style="padding:6px 10px;color:#475569;font-weight:500;font-size:.8em">CONDICIÓN</th>
+        <th style="padding:6px 10px;text-align:center;color:#475569;font-weight:500;font-size:.8em"></th>
+      </tr></thead>
+      <tbody>{fred_html}</tbody>
+    </table>
+    </div>
+    <p style="color:#334155;font-size:.72rem;margin-top:8px">Fuente: FRED (Fed de San Luis). Los «gates» del régimen: tipos reales, liquidez (M2), balance de la Fed, crédito e inflación esperada.</p>
+  </div>""" if fred_present else ""
+
+# ── Escasez física: inventarios (cobre LME, uranio spot) ───────────────────────
+fund_html = ""
+if ind.get("COPPER_STOCK") is not None:
+    fund_html += fred_row("COPPER_STOCK", "Inventario cobre LME", "cae = escasez", lambda v, c: c is not None and c < 0, 0, " t")
+if ind.get("URANIUM_SPOT") is not None:
+    fund_html += fred_row("URANIUM_SPOT", "Uranio spot U3O8",     "sube = déficit", lambda v, c: c is not None and c > 0, 2, "$")
+
+fund_card = f"""
+  <div class="card">
+    <h2 style="color:#64748b">ESCASEZ FÍSICA · INVENTARIOS</h2>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr style="border-bottom:1px solid #1e293b">
+        <th style="padding:6px 10px;text-align:left;color:#475569;font-weight:500;font-size:.8em">SEÑAL</th>
+        <th style="padding:6px 10px;text-align:right;color:#475569;font-weight:500;font-size:.8em">VALOR</th>
+        <th style="padding:6px 10px;text-align:right;color:#475569;font-weight:500;font-size:.8em">CAMBIO</th>
+        <th style="padding:6px 10px;color:#475569;font-weight:500;font-size:.8em">CONDICIÓN</th>
+        <th style="padding:6px 10px;text-align:center;color:#475569;font-weight:500;font-size:.8em"></th>
+      </tr></thead>
+      <tbody>{fund_html}</tbody>
+    </table>
+    </div>
+    <p style="color:#334155;font-size:.72rem;margin-top:8px">Inventario de cobre en almacenes LME (Westmetall) y precio spot del uranio U3O8 (Yellowcake plc). Stock de cobre cayendo o uranio al alza = escasez física.</p>
+  </div>""" if fund_html else ""
+
 # ── Generar HTML ──────────────────────────────────────────────────────────────
 html = f"""<!DOCTYPE html>
 <html lang="es">
@@ -346,7 +405,7 @@ html = f"""<!DOCTYPE html>
     <div>
       <h1>⚡ Tesis Escasez y Resiliencia</h1>
       <p style="color:#475569;font-size:.85rem;margin-top:4px">
-        V(t) = Capital × (1+r)ᵗ × Φ_L(t) &nbsp;·&nbsp; Jose Vilar
+        V(t) = Capital × (1+r)ᵗ × Φ_L(t) &nbsp;·&nbsp; Qmetrika Labs
       </p>
     </div>
     <div style="text-align:right">
@@ -430,6 +489,12 @@ html = f"""<!DOCTYPE html>
     </div>
   </div>
 
+  <!-- Régimen macro (FRED) -->
+  {fred_card}
+
+  <!-- Escasez física · inventarios -->
+  {fund_card}
+
   <!-- Contexto -->
   <div class="card">
     <h2 style="color:#64748b">CONTEXTO DE MERCADO</h2>
@@ -496,7 +561,7 @@ html = f"""<!DOCTYPE html>
   <div style="text-align:center;color:#334155;font-size:.75rem;margin-top:24px;line-height:1.8">
     V(t) = Capital × (1+r)ᵗ × Φ_L(t) &nbsp;·&nbsp; Φ_L(t) = 1 + K/(1+e^(−γ·(t−t₀)))<br>
     Fuente: Yahoo Finance · Actualizado: {updated}<br>
-    Jose Vilar · UOC Data Science
+    Qmetrika Labs
   </div>
 
 </div>

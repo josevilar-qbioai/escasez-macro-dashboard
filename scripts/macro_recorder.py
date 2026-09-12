@@ -16,6 +16,7 @@ Uso:
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -51,6 +52,73 @@ MACRO_TICKERS = [
 ]
 
 SNAPSHOT_FILE = "macro_snapshot.json"
+
+# ── Series FRED (régimen macro) ────────────────────────────────────────────────
+# La API key se lee de la variable de entorno FRED_API_KEY (secret de GitHub).
+# (series_id, clave_json, nombre, unidad, decimales, modo_cambio, escala)
+#   modo_cambio: "bp" (puntos básicos, para %) o "pct" (variación porcentual)
+FRED_SERIES = [
+    ("DFII10",       "REAL10Y",   "Tipos reales 10a (TIPS)", "%", 2, "bp",  1),
+    ("T10YIE",       "BREAKEVEN", "Inflación esperada 10a",  "%", 2, "bp",  1),
+    ("M2SL",         "M2",        "M2 EE.UU. (bn $)",        "",  1, "pct", 1),
+    ("WALCL",        "FEDBS",     "Balance Fed (bn $)",      "",  0, "pct", 0.001),
+    ("BAMLH0A0HYM2", "HYSPREAD",  "Spread High Yield",       "%", 2, "bp",  1),
+]
+
+
+def fetch_fred(result: dict):
+    """Añade indicadores macro de FRED a result['indicadores'] (si hay API key)."""
+    key = os.environ.get("FRED_API_KEY", "").strip()
+    if not key:
+        print("  (FRED_API_KEY no definido — se omiten los indicadores FRED)")
+        return
+    try:
+        import requests
+    except ImportError:
+        print("  ⚠  requests no instalado — se omiten los indicadores FRED")
+        return
+
+    base = "https://api.stlouisfed.org/fred/series/observations"
+    print(f"Descargando {len(FRED_SERIES)} indicadores FRED…")
+    for sid, k, nombre, unidad, dec, modo, escala in FRED_SERIES:
+        try:
+            r = requests.get(base, params={
+                "series_id": sid, "api_key": key, "file_type": "json",
+                "sort_order": "desc", "limit": 400}, timeout=25)
+            obs = r.json().get("observations", [])
+            pts = [(o["date"], float(o["value"]) * escala)
+                   for o in obs if o.get("value") not in (".", "", None)]
+            if not pts:
+                print(f"  ⚠  {k} ({sid}): sin datos")
+                continue
+            d0, v0 = pts[0]  # más reciente (orden desc)
+            base_date = datetime.strptime(d0, "%Y-%m-%d").date()
+
+            def val_atras(dias):
+                objetivo = base_date - timedelta(days=dias)
+                for ds, vv in pts:  # desc → primer punto con fecha <= objetivo
+                    if datetime.strptime(ds, "%Y-%m-%d").date() <= objetivo:
+                        return vv
+                return None
+
+            v1s, v1m = val_atras(7), val_atras(30)
+            if modo == "bp":
+                c1s = round((v0 - v1s) * 100, 1) if v1s is not None else None
+                c1m = round((v0 - v1m) * 100, 1) if v1m is not None else None
+                chg_unit = "bp"
+            else:
+                c1s = round((v0 - v1s) / abs(v1s) * 100, 2) if v1s else None
+                c1m = round((v0 - v1m) / abs(v1m) * 100, 2) if v1m else None
+                chg_unit = "%"
+
+            result["indicadores"][k] = {
+                "nombre": nombre, "unidad": unidad, "decimales": dec,
+                "chg_unit": chg_unit, "valor": round(v0, max(dec, 2)),
+                "fecha": d0, "chg_1d": None, "chg_1sem": c1s, "chg_1mes": c1m,
+            }
+            print(f"  ✓  {k:9s} {v0:>12.{dec}f}{unidad}  (FRED {sid})")
+        except Exception as e:
+            print(f"  ✗  {k} ({sid}): {e}")
 
 
 def pct_change(new_val, old_val):
@@ -154,7 +222,67 @@ def fetch_macro_data() -> dict:
     except Exception:
         pass
 
+    # ── Régimen macro vía FRED ──────────────────────────────────────────────────
+    fetch_fred(result)
+
+    # ── Escasez física: inventario de cobre (LME) y uranio spot ────────────────
+    fetch_inventarios(result)
+
     return result
+
+
+def fetch_inventarios(result: dict):
+    """Añade inventario de cobre (Westmetall/LME) y uranio spot (Yellowcake).
+    Fuentes públicas gratuitas; si fallan, se omiten sin romper el pipeline."""
+    try:
+        import requests
+    except ImportError:
+        print("  ⚠  requests no instalado — se omiten inventarios")
+        return
+    hoy = datetime.now().strftime("%Y-%m-%d")
+
+    # Cobre: stock LME en toneladas (Westmetall publica precio y stock)
+    try:
+        h = requests.get("https://www.westmetall.com/en/markdaten.php",
+                         timeout=25, headers={"User-Agent": "Mozilla/5.0"}).text
+        import re
+        m = re.findall(r'>\s*Copper\s*</a>.*?<td>\s*<a[^>]*>\s*([\d,\.]+)\s*</a>'
+                       r'.*?<td class="last">\s*<a[^>]*>\s*([+\-−–]?[\d,\.]+)', h, re.S)
+        if len(m) >= 2:  # m[0] = precio, m[1] = stock
+            stock = float(m[1][0].replace(",", ""))
+            craw = m[1][1].replace("−", "-").replace("–", "-").replace(",", "")
+            chg_t = float(craw) if craw not in ("", "-") else None
+            chg_pct = round(chg_t / (stock - chg_t) * 100, 2) if chg_t else None
+            result["indicadores"]["COPPER_STOCK"] = {
+                "nombre": "Inventario cobre LME (t)", "unidad": "t", "decimales": 0,
+                "chg_unit": "%", "valor": round(stock), "fecha": hoy,
+                "chg_1d": chg_pct, "chg_1sem": None, "chg_1mes": None,
+            }
+            print(f"  ✓  COPPER_STOCK {stock:>12,.0f} t  ({chg_t:+.0f} t)")
+        else:
+            print("  ⚠  COPPER_STOCK: no se pudo parsear Westmetall")
+    except Exception as e:
+        print(f"  ✗  COPPER_STOCK: {e}")
+
+    # Uranio: spot U3O8 (Yellowcake plc, texto)
+    try:
+        import re
+        t = requests.get("https://www.yellowcakeplc.com/api/spotUraniumPrice.php",
+                         timeout=25).text
+        pr = re.search(r'US\$([\d.]+)/lb', t)
+        cg = re.search(r'([+\-][\d.]+),\s*([+\-][\d.]+)%', t)
+        if pr:
+            result["indicadores"]["URANIUM_SPOT"] = {
+                "nombre": "Uranio spot U3O8 ($/lb)", "unidad": "$", "decimales": 2,
+                "chg_unit": "%", "valor": float(pr.group(1)), "fecha": hoy,
+                "chg_1d": float(cg.group(2)) if cg else None,
+                "chg_1sem": None, "chg_1mes": None,
+            }
+            print(f"  ✓  URANIUM_SPOT {float(pr.group(1)):>8.2f} $/lb")
+        else:
+            print("  ⚠  URANIUM_SPOT: no se pudo parsear Yellowcake")
+    except Exception as e:
+        print(f"  ✗  URANIUM_SPOT: {e}")
 
 
 def save_snapshot(data: dict, hist_dir: Path) -> Path:
