@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-12 20:25",
+  "updated": "2026-09-12 20:30",
   "indicadores": {
     "VIX": {
       "nombre": "VIX Volatilidad",
@@ -193,11 +193,11 @@
       "unidad": "",
       "decimales": 0,
       "chg_unit": "%",
-      "valor": 77154.67,
+      "valor": 77175.55,
       "fecha": "2026-09-12",
-      "chg_1d": -0.02,
-      "chg_1sem": -2.48,
-      "chg_1mes": 0.09
+      "chg_1d": 0.0,
+      "chg_1sem": -2.45,
+      "chg_1mes": 0.12
     },
     "SPREAD": {
       "nombre": "Curva tipos 10Y−13W",
@@ -207,6 +207,83 @@
       "valor": 1.062,
       "fecha": "2026-09-11",
       "chg_1d": null,
+      "chg_1sem": null,
+      "chg_1mes": null
+    },
+    "REAL10Y": {
+      "nombre": "Tipos reales 10a (TIPS)",
+      "unidad": "%",
+      "decimales": 2,
+      "chg_unit": "bp",
+      "valor": 2.55,
+      "fecha": "2026-09-10",
+      "chg_1d": null,
+      "chg_1sem": 13.0,
+      "chg_1mes": 12.0
+    },
+    "BREAKEVEN": {
+      "nombre": "Inflación esperada 10a",
+      "unidad": "%",
+      "decimales": 2,
+      "chg_unit": "bp",
+      "valor": 2.36,
+      "fecha": "2026-09-11",
+      "chg_1d": null,
+      "chg_1sem": 1.0,
+      "chg_1mes": 10.0
+    },
+    "M2": {
+      "nombre": "M2 EE.UU. (bn $)",
+      "unidad": "",
+      "decimales": 1,
+      "chg_unit": "%",
+      "valor": 23218.0,
+      "fecha": "2026-07-01",
+      "chg_1d": null,
+      "chg_1sem": 0.44,
+      "chg_1mes": 0.44
+    },
+    "FEDBS": {
+      "nombre": "Balance Fed (bn $)",
+      "unidad": "",
+      "decimales": 0,
+      "chg_unit": "%",
+      "valor": 6740.62,
+      "fecha": "2026-09-09",
+      "chg_1d": null,
+      "chg_1sem": 0.05,
+      "chg_1mes": -0.12
+    },
+    "HYSPREAD": {
+      "nombre": "Spread High Yield",
+      "unidad": "%",
+      "decimales": 2,
+      "chg_unit": "bp",
+      "valor": 2.7,
+      "fecha": "2026-09-10",
+      "chg_1d": null,
+      "chg_1sem": 5.0,
+      "chg_1mes": -2.0
+    },
+    "COPPER_STOCK": {
+      "nombre": "Inventario cobre LME (t)",
+      "unidad": "t",
+      "decimales": 0,
+      "chg_unit": "%",
+      "valor": 234475,
+      "fecha": "2026-09-12",
+      "chg_1d": -0.12,
+      "chg_1sem": null,
+      "chg_1mes": null
+    },
+    "URANIUM_SPOT": {
+      "nombre": "Uranio spot U3O8 ($/lb)",
+      "unidad": "$",
+      "decimales": 2,
+      "chg_unit": "%",
+      "valor": 90.13,
+      "fecha": "2026-09-12",
+      "chg_1d": 0.42,
       "chg_1sem": null,
       "chg_1mes": null
     }
