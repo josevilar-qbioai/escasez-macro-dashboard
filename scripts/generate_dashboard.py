@@ -36,7 +36,7 @@ def fval(v, dec=2, unit=""):
 
 def fchg(c, unit="%"):
     if c is None: return '<span style="color:#888">—</span>'
-    col = "#5cc98d" if c >= 0 else "#d97a6b"
+    col = "#39ff88" if c >= 0 else "#ff6b5a"
     sign = "+" if c >= 0 else ""
     return f'<span style="color:{col}">{sign}{c:.1f}{unit}</span>'
 
@@ -72,30 +72,30 @@ score_pct = score_n / len(checks) * 100
 
 if score_pct >= 65:
     score_label = "TESIS EN MARCHA"
-    score_col   = "#5cc98d"
+    score_col   = "#39ff88"
 elif score_pct >= 40:
     score_label = "SEÑALES MIXTAS"
-    score_col   = "#e0b341"
+    score_col   = "#ffcf6b"
 else:
     score_label = "TESIS DÉBIL"
-    score_col   = "#d97a6b"
+    score_col   = "#ff6b5a"
 
 # Correlación SOX/Cobre
 if sox_up and cop_up:
     corr_icon, corr_label, corr_col, corr_msg = (
-        "●", "ERA DE CONSTRUCCIÓN", "#5cc98d",
+        "●", "ERA DE CONSTRUCCIÓN", "#39ff88",
         "Mantener metales + IA — tesis completa en marcha")
 elif sox_up and not cop_up:
     corr_icon, corr_label, corr_col, corr_msg = (
-        "●", "DIVERGENCIA · ALERTA", "#d97a6b",
+        "●", "DIVERGENCIA · ALERTA", "#ff6b5a",
         "Vigilar rotación: reducir mineras, reforzar IA pura")
 elif not sox_up and cop_up:
     corr_icon, corr_label, corr_col, corr_msg = (
-        "●", "ESCASEZ FÍSICA", "#e0b341",
+        "●", "ESCASEZ FÍSICA", "#ffcf6b",
         "Metales fuertes — esperar confirmación de rebote en SOX")
 else:
     corr_icon, corr_label, corr_col, corr_msg = (
-        "●", "CONTRACCIÓN", "#d97a6b",
+        "●", "CONTRACCIÓN", "#ff6b5a",
         "Modo defensivo — esperar estabilización")
 
 bar_pct = int(score_pct)
@@ -108,9 +108,9 @@ TESIS_T0      = 5        # año de inflexión (2026 + 5 = 2031)
 TESIS_YEARS   = 10
 
 TESIS_SCEN = {
-    "BASE":      {"r": 0.20, "K": 2.0, "gamma": 0.50, "col": "#5cc98d",  "col_bg": "#5cc98d22"},
-    "ÓPTIMO":    {"r": 0.25, "K": 4.0, "gamma": 0.90, "col": "#e0b341",  "col_bg": "#e0b34122"},
-    "ACELERADO": {"r": 0.30, "K": 6.0, "gamma": 1.50, "col": "#6f9bd0",  "col_bg": "#6f9bd022"},
+    "BASE":      {"r": 0.20, "K": 2.0, "gamma": 0.50, "col": "#39ff88",  "col_bg": "#39ff8822"},
+    "ÓPTIMO":    {"r": 0.25, "K": 4.0, "gamma": 0.90, "col": "#ffcf6b",  "col_bg": "#ffcf6b22"},
+    "ACELERADO": {"r": 0.30, "K": 6.0, "gamma": 1.50, "col": "#1f8f4f",  "col_bg": "#1f8f4f22"},
 }
 
 def phi_L(t, K, gamma, t0=TESIS_T0):
@@ -144,15 +144,15 @@ def svg_line_chart(series, w=640, h=220):
     for frac in [0, 0.25, 0.5, 0.75, 1.0]:
         y = pad_t + (1 - frac) * (h - pad_t - pad_b)
         val = mn + frac * rng
-        elems.append(f'<line x1="{pad_l}" y1="{y:.1f}" x2="{w-pad_r}" y2="{y:.1f}" stroke="#26303f" stroke-width="1"/>')
+        elems.append(f'<line x1="{pad_l}" y1="{y:.1f}" x2="{w-pad_r}" y2="{y:.1f}" stroke="#146637" stroke-width="1"/>')
         label = f"€{val/1000:.0f}K" if val >= 1000 else f"€{val:.0f}"
-        elems.append(f'<text x="{pad_l-4}" y="{y+4:.1f}" text-anchor="end" font-size="9" fill="#6b7688">{label}</text>')
+        elems.append(f'<text x="{pad_l-4}" y="{y+4:.1f}" text-anchor="end" font-size="9" fill="#1f8f4f">{label}</text>')
     # Eje X: años
     for i in range(n_pts):
         x = cx(i)
         yr = 2026 + i
         if i % 2 == 0:
-            elems.append(f'<text x="{x:.1f}" y="{h-6}" text-anchor="middle" font-size="9" fill="#6b7688">{yr}</text>')
+            elems.append(f'<text x="{x:.1f}" y="{h-6}" text-anchor="middle" font-size="9" fill="#1f8f4f">{yr}</text>')
     # Curvas
     for lbl, vals, col in series:
         pts = " ".join(f"{cx(i):.1f},{cy(v):.1f}" for i, v in enumerate(vals))
@@ -176,13 +176,13 @@ def tesis_table_html():
     for t in range(TESIS_YEARS + 1):
         yr = 2026 + t
         bold = ' style="font-weight:700"' if t in (0, 5, 10) else ""
-        row = f'<tr{bold}><td style="padding:4px 10px;color:#8592a6">{yr}</td>'
+        row = f'<tr{bold}><td style="padding:4px 10px;color:#1f8f4f">{yr}</td>'
         for name, sc in TESIS_SCEN.items():
             v = tesis_data[name][t]
             vs = f"€{v:,.0f}".replace(",", ".")
             mult = v / TESIS_CAPITAL
             row += (f'<td style="padding:4px 10px;text-align:right;color:{sc["col"]}">'
-                    f'{vs} <span style="color:#6b7688;font-size:.8em">×{mult:.1f}</span></td>')
+                    f'{vs} <span style="color:#1f8f4f;font-size:.8em">×{mult:.1f}</span></td>')
         rows += row + "</tr>\n"
     return rows
 
@@ -196,9 +196,9 @@ def tesis_params_html():
         f10 = tesis_data[name][10]
         rows += (f'<tr>'
                  f'<td style="padding:6px 10px;color:{sc["col"]};font-weight:700">{name}</td>'
-                 f'<td style="padding:6px 10px;text-align:right;color:#e6eaf0">{sc["r"]:.0%}</td>'
-                 f'<td style="padding:6px 10px;text-align:right;color:#e6eaf0">{sc["K"]:.1f}</td>'
-                 f'<td style="padding:6px 10px;text-align:right;color:#e6eaf0">{sc["gamma"]:.2f}</td>'
+                 f'<td style="padding:6px 10px;text-align:right;color:#39ff88">{sc["r"]:.0%}</td>'
+                 f'<td style="padding:6px 10px;text-align:right;color:#39ff88">{sc["K"]:.1f}</td>'
+                 f'<td style="padding:6px 10px;text-align:right;color:#39ff88">{sc["gamma"]:.2f}</td>'
                  f'<td style="padding:6px 10px;text-align:right;color:{sc["col"]}">€{f5:,.0f}</td>'
                  f'<td style="padding:6px 10px;text-align:right;color:{sc["col"]}">€{f10:,.0f}</td>'
                  f'</tr>\n')
@@ -254,15 +254,15 @@ for k, lbl in [("SOX","SOX"), ("COPPER","Cobre"), ("NASDAQ","NASDAQ"),
                 ("BTC","BTC"), ("URANIUM","Uranio"), ("XLU","XLU"),
                 ("GOLD","Oro"), ("SP500","S&P500")]:
     v = ind.get(k, {}).get("chg_1mes")
-    col = "#5cc98d" if (v is not None and v >= 0) else "#d97a6b"
+    col = "#39ff88" if (v is not None and v >= 0) else "#ff6b5a"
     chart_data.append((lbl, v, col))
 
 chart_svg = svg_bar_chart(chart_data)
 
 # ── Señales por pilar (HTML) ──────────────────────────────────────────────────
 def signal_row(icon, label, val_s, chg_html, condition, ok):
-    dot = '<span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#5cc98d;vertical-align:middle"></span>' if ok else \
-          '<span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span>'
+    dot = '<span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#39ff88;vertical-align:middle"></span>' if ok else \
+          '<span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#ff6b5a;vertical-align:middle"></span>'
     return f"""
         <tr>
           <td style="padding:6px 10px;color:#ccc">{icon} {label}</td>
@@ -274,13 +274,13 @@ def signal_row(icon, label, val_s, chg_html, condition, ok):
 
 signals_html = ""
 # Autoreplicación IA
-signals_html += f'<tr><td colspan="5" style="padding:8px 10px 2px;color:#cf8b4f;font-weight:bold;font-size:.8em;letter-spacing:.1em">AUTOREPLICACIÓN IA</td></tr>'
+signals_html += f'<tr><td colspan="5" style="padding:8px 10px 2px;color:#b7ffd4;font-weight:bold;font-size:.8em;letter-spacing:.1em">AUTOREPLICACIÓN IA</td></tr>'
 signals_html += signal_row("📡","SOX Semiconductores", fval(sox_v,2,""),  fchg(sox_1m),  "+2%/1M", sox_up)
 signals_html += signal_row("💻","NASDAQ Tech",          fval(nas_v,0,""),  fchg(nas_1m),  "+2%/1M", nas_ok)
 signals_html += signal_row("🤖","ROBO Robótica",        fval(robo_v,2,""), fchg(robo_1m), "+2%/1M", robo_ok)
 signals_html += signal_row("⚛","QTUM Cuántica",         fval(qtum_v,2,""), fchg(qtum_1m), "+3%/1M", qtum_ok)
 
-signals_html += f'<tr><td colspan="5" style="padding:8px 10px 2px;color:#e0b341;font-weight:bold;font-size:.8em;letter-spacing:.1em">ESCASEZ DIGITAL</td></tr>'
+signals_html += f'<tr><td colspan="5" style="padding:8px 10px 2px;color:#ffcf6b;font-weight:bold;font-size:.8em;letter-spacing:.1em">ESCASEZ DIGITAL</td></tr>'
 signals_html += signal_row("₿","BTC momentum",        fval(btc_v,0,"€"), fchg(btc_1m), "+5%/1M", btc_mom)
 btc_beat_chg  = fchg(btc_1m) if btc_1m is not None else '—'
 signals_html += signal_row("₿","BTC vs NASDAQ",       "—", btc_beat_chg, "BTC > NASDAQ 1M", btc_beat)
@@ -300,7 +300,7 @@ signals_html += signal_row("😰","VIX Volatilidad",     fval(vix_v,1,""), "—"
 # Contexto
 def ctx_row(k, label, dec=2, unit=""):
     v, c1m, _ = gv(k)
-    return f"""<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #26303f">
+    return f"""<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #146637">
       <span style="color:#94a3b8">{label}</span>
       <span style="color:#fff">{fval(v,dec,unit)}&nbsp;&nbsp;{fchg(c1m)}</span>
     </div>"""
@@ -330,20 +330,20 @@ if fred_present:
 
 fred_card = f"""
   <div class="card">
-    <h2 style="color:#8592a6">RÉGIMEN MACRO · FRED</h2>
+    <h2 style="color:#1f8f4f">RÉGIMEN MACRO · FRED</h2>
     <div style="overflow-x:auto">
     <table>
-      <thead><tr style="border-bottom:1px solid #26303f">
-        <th style="padding:6px 10px;text-align:left;color:#6b7688;font-weight:500;font-size:.8em">SEÑAL</th>
-        <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">VALOR</th>
-        <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">1 MES</th>
-        <th style="padding:6px 10px;color:#6b7688;font-weight:500;font-size:.8em">CONDICIÓN</th>
-        <th style="padding:6px 10px;text-align:center;color:#6b7688;font-weight:500;font-size:.8em"></th>
+      <thead><tr style="border-bottom:1px solid #146637">
+        <th style="padding:6px 10px;text-align:left;color:#1f8f4f;font-weight:500;font-size:.8em">SEÑAL</th>
+        <th style="padding:6px 10px;text-align:right;color:#1f8f4f;font-weight:500;font-size:.8em">VALOR</th>
+        <th style="padding:6px 10px;text-align:right;color:#1f8f4f;font-weight:500;font-size:.8em">1 MES</th>
+        <th style="padding:6px 10px;color:#1f8f4f;font-weight:500;font-size:.8em">CONDICIÓN</th>
+        <th style="padding:6px 10px;text-align:center;color:#1f8f4f;font-weight:500;font-size:.8em"></th>
       </tr></thead>
       <tbody>{fred_html}</tbody>
     </table>
     </div>
-    <p style="color:#55617a;font-size:.72rem;margin-top:8px">Fuente: FRED (Fed de San Luis). Los «gates» del régimen: tipos reales, liquidez (M2), balance de la Fed, crédito e inflación esperada.</p>
+    <p style="color:#146637;font-size:.72rem;margin-top:8px">Fuente: FRED (Fed de San Luis). Los «gates» del régimen: tipos reales, liquidez (M2), balance de la Fed, crédito e inflación esperada.</p>
   </div>""" if fred_present else ""
 
 # ── Escasez física: inventarios (cobre LME, uranio spot) ───────────────────────
@@ -355,20 +355,20 @@ if ind.get("URANIUM_SPOT") is not None:
 
 fund_card = f"""
   <div class="card">
-    <h2 style="color:#8592a6">ESCASEZ FÍSICA · INVENTARIOS</h2>
+    <h2 style="color:#1f8f4f">ESCASEZ FÍSICA · INVENTARIOS</h2>
     <div style="overflow-x:auto">
     <table>
-      <thead><tr style="border-bottom:1px solid #26303f">
-        <th style="padding:6px 10px;text-align:left;color:#6b7688;font-weight:500;font-size:.8em">SEÑAL</th>
-        <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">VALOR</th>
-        <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">CAMBIO</th>
-        <th style="padding:6px 10px;color:#6b7688;font-weight:500;font-size:.8em">CONDICIÓN</th>
-        <th style="padding:6px 10px;text-align:center;color:#6b7688;font-weight:500;font-size:.8em"></th>
+      <thead><tr style="border-bottom:1px solid #146637">
+        <th style="padding:6px 10px;text-align:left;color:#1f8f4f;font-weight:500;font-size:.8em">SEÑAL</th>
+        <th style="padding:6px 10px;text-align:right;color:#1f8f4f;font-weight:500;font-size:.8em">VALOR</th>
+        <th style="padding:6px 10px;text-align:right;color:#1f8f4f;font-weight:500;font-size:.8em">CAMBIO</th>
+        <th style="padding:6px 10px;color:#1f8f4f;font-weight:500;font-size:.8em">CONDICIÓN</th>
+        <th style="padding:6px 10px;text-align:center;color:#1f8f4f;font-weight:500;font-size:.8em"></th>
       </tr></thead>
       <tbody>{fund_html}</tbody>
     </table>
     </div>
-    <p style="color:#55617a;font-size:.72rem;margin-top:8px">Inventario de cobre en almacenes LME (Westmetall) y precio spot del uranio U3O8 (Yellowcake plc). Stock de cobre cayendo o uranio al alza = escasez física.</p>
+    <p style="color:#146637;font-size:.72rem;margin-top:8px">Inventario de cobre en almacenes LME (Westmetall) y precio spot del uranio U3O8 (Yellowcake plc). Stock de cobre cayendo o uranio al alza = escasez física.</p>
   </div>""" if fund_html else ""
 
 # ── Generar HTML ──────────────────────────────────────────────────────────────
@@ -379,32 +379,41 @@ html = f"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <title>⚡ Tesis Escasez y Resiliencia</title>
 <style>
   *{{box-sizing:border-box;margin:0;padding:0}}
   :root{{
-    --bg:#0e141d; --card:#161e2b; --card2:#1a2331; --border:#26303f;
-    --text:#e6eaf0; --muted:#93a1b5; --faint:#69768a; --accent:#cf8b4f;
+    --bg:#020703; --card:#05140b; --card2:#071a0e; --border:#146637;
+    --text:#39ff88; --muted:#1f8f4f; --faint:#146637; --accent:#b7ffd4;
   }}
-  body{{background:var(--bg);color:var(--text);
-    font-family:'Inter',system-ui,-apple-system,sans-serif;min-height:100vh;
-    -webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}}
+  html,body{{background:#000}}
+  body{{background:radial-gradient(120% 100% at 50% 0%,#04150c 0%,#020a05 55%,#000 100%);
+    color:var(--text);font-family:"IBM Plex Mono",ui-monospace,monospace;min-height:100vh;
+    text-shadow:0 0 4px rgba(57,255,136,.5),0 0 12px rgba(57,255,136,.22);
+    -webkit-font-smoothing:antialiased;animation:flick 7s infinite steps(60)}}
+  @keyframes flick{{0%,96%,100%{{opacity:1}}97%{{opacity:.94}}98%{{opacity:.99}}}}
+  body::before{{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.22) 3px,rgba(0,0,0,.22) 4px);
+    mix-blend-mode:multiply}}
+  body::after{{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;
+    background:radial-gradient(120% 90% at 50% 40%,transparent 60%,rgba(0,0,0,.5) 100%)}}
   .num,.val,.kpi .val,table td,table th{{font-variant-numeric:tabular-nums}}
-  .wrap{{max-width:920px;margin:0 auto;padding:32px 18px 56px}}
-  h1{{font-size:1.35rem;font-weight:700;letter-spacing:-.01em}}
-  h2{{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}}
-  .card{{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 24px;margin-bottom:16px}}
-  .grid2{{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
-  @media(max-width:600px){{.grid2{{grid-template-columns:1fr}}.wrap{{padding:22px 14px 44px}}}}
+  .wrap{{max-width:920px;margin:0 auto;padding:30px 18px 56px;position:relative;z-index:1}}
+  h1{{font-family:"VT323",monospace;font-size:2.5rem;font-weight:400;letter-spacing:1px;color:var(--accent);line-height:.95}}
+  h2{{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}}
+  .card{{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:20px 22px;margin-bottom:16px}}
+  .grid2{{display:grid;grid-template-columns:1fr 1fr;gap:14px}}
+  @media(max-width:600px){{.grid2{{grid-template-columns:1fr}}.wrap{{padding:20px 12px 44px}}}}
   .kpi{{text-align:center}}
-  .kpi .val{{font-size:1.9rem;font-weight:700;line-height:1.1;letter-spacing:-.02em}}
-  .kpi .lbl{{font-size:.72rem;color:var(--faint);margin-top:5px;text-transform:uppercase;letter-spacing:.08em}}
+  .kpi .val{{font-family:"VT323",monospace;font-size:2.3rem;font-weight:400;line-height:1;color:var(--accent)}}
+  .kpi .lbl{{font-size:.7rem;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.12em}}
   table{{width:100%;border-collapse:collapse;font-size:.9rem}}
-  .bar-bg{{background:var(--border);border-radius:999px;height:8px;overflow:hidden;margin:10px 0}}
-  .bar-fg{{height:8px;border-radius:999px;transition:width .4s}}
-  .tag{{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.75rem;font-weight:600;letter-spacing:.02em}}
-  .upd{{color:var(--faint);font-size:.78rem}}
+  .bar-bg{{background:#0a2414;border:1px solid var(--border);border-radius:2px;height:14px;overflow:hidden;margin:10px 0}}
+  .bar-fg{{height:14px;transition:width .4s;box-shadow:0 0 10px rgba(57,255,136,.6)}}
+  .tag{{display:inline-block;padding:3px 12px;border:1px solid currentColor;border-radius:2px;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}}
+  .upd{{color:var(--muted);font-size:.78rem}}
+  a{{color:var(--accent)}}
 </style>
 </head>
 <body>
@@ -414,7 +423,7 @@ html = f"""<!DOCTYPE html>
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:8px">
     <div>
       <h1>⚡ Tesis Escasez y Resiliencia</h1>
-      <p style="color:#6b7688;font-size:.85rem;margin-top:4px">
+      <p style="color:#1f8f4f;font-size:.85rem;margin-top:4px">
         V(t) = Capital × (1+r)ᵗ × Φ_L(t) &nbsp;·&nbsp; Qmetrika Labs
       </p>
     </div>
@@ -429,20 +438,20 @@ html = f"""<!DOCTYPE html>
   <!-- Score y correlación SOX/Cobre -->
   <div class="card">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
-      <h2 style="margin:0;color:#cf8b4f">⚡ SCORE ESCASEZ</h2>
+      <h2 style="margin:0;color:#b7ffd4">⚡ SCORE ESCASEZ</h2>
       <span style="font-size:1.5rem;font-weight:700;color:{score_col}">{score_pct:.0f}%
-        <span style="font-size:.9rem;color:#8592a6">({score_n}/12)</span>
+        <span style="font-size:.9rem;color:#1f8f4f">({score_n}/12)</span>
       </span>
     </div>
     <div class="bar-bg">
       <div class="bar-fg" style="width:{bar_pct}%;background:{score_col}"></div>
     </div>
-    <div style="margin-top:16px;padding:14px;background:#0e141d;border-radius:8px;border-left:3px solid {corr_col}">
+    <div style="margin-top:16px;padding:14px;background:#020703;border-radius:8px;border-left:3px solid {corr_col}">
       <div style="font-size:1rem;font-weight:700;color:{corr_col}">
         {corr_icon} CORRELACIÓN SOX/COBRE — {corr_label}
       </div>
       <div style="color:#94a3b8;font-size:.85rem;margin-top:6px">{corr_msg}</div>
-      <div style="color:#8592a6;font-size:.8rem;margin-top:8px">
+      <div style="color:#1f8f4f;font-size:.8rem;margin-top:8px">
         SOX {fval(sox_v,2)} ({fchg(sox_1m)}/1M) &nbsp;·&nbsp; Cobre {fval(cop_v,3,"$")} ({fchg(cop_1m)}/1M)
       </div>
     </div>
@@ -451,7 +460,7 @@ html = f"""<!DOCTYPE html>
   <!-- KPIs rápidos -->
   <div class="grid2">
     <div class="card kpi">
-      <div class="val" style="color:#cf8b4f">{fval(sox_v,0)}</div>
+      <div class="val" style="color:#b7ffd4">{fval(sox_v,0)}</div>
       <div class="lbl">SOX Semiconductores</div>
       <div style="margin-top:6px">{fchg(sox_1m)} en 1 mes</div>
     </div>
@@ -461,14 +470,14 @@ html = f"""<!DOCTYPE html>
       <div style="margin-top:6px">{fchg(cop_1m)} en 1 mes</div>
     </div>
     <div class="card kpi">
-      <div class="val" style="color:#e0b341">₿ {fval(btc_v,0,"€")}</div>
+      <div class="val" style="color:#ffcf6b">₿ {fval(btc_v,0,"€")}</div>
       <div class="lbl">Bitcoin (EUR)</div>
       <div style="margin-top:6px">{fchg(btc_1m)} en 1 mes</div>
     </div>
     <div class="card kpi">
       <div class="val" style="color:#94a3b8">{fval(vix_v,1)}</div>
       <div class="lbl">VIX Volatilidad</div>
-      <div style="margin-top:6px;color:{'#5cc98d' if vix_ok else '#d97a6b'}">
+      <div style="margin-top:6px;color:{'#39ff88' if vix_ok else '#ff6b5a'}">
         {'< 20 — entorno favorable' if vix_ok else '≥ 20 — precaución'}
       </div>
     </div>
@@ -476,22 +485,22 @@ html = f"""<!DOCTYPE html>
 
   <!-- Gráfico variación 1M -->
   <div class="card">
-    <h2 style="color:#8592a6">VARIACIÓN 1 MES — INDICADORES CLAVE</h2>
+    <h2 style="color:#1f8f4f">VARIACIÓN 1 MES — INDICADORES CLAVE</h2>
     {chart_svg}
   </div>
 
   <!-- Señales por pilar -->
   <div class="card">
-    <h2 style="color:#8592a6">SEÑALES POR PILAR</h2>
+    <h2 style="color:#1f8f4f">SEÑALES POR PILAR</h2>
     <div style="overflow-x:auto">
     <table>
       <thead>
-        <tr style="border-bottom:1px solid #26303f">
-          <th style="padding:6px 10px;text-align:left;color:#6b7688;font-weight:500;font-size:.8em">SEÑAL</th>
-          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">VALOR</th>
-          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">1 MES</th>
-          <th style="padding:6px 10px;color:#6b7688;font-weight:500;font-size:.8em">CONDICIÓN</th>
-          <th style="padding:6px 10px;text-align:center;color:#6b7688;font-weight:500;font-size:.8em"></th>
+        <tr style="border-bottom:1px solid #146637">
+          <th style="padding:6px 10px;text-align:left;color:#1f8f4f;font-weight:500;font-size:.8em">SEÑAL</th>
+          <th style="padding:6px 10px;text-align:right;color:#1f8f4f;font-weight:500;font-size:.8em">VALOR</th>
+          <th style="padding:6px 10px;text-align:right;color:#1f8f4f;font-weight:500;font-size:.8em">1 MES</th>
+          <th style="padding:6px 10px;color:#1f8f4f;font-weight:500;font-size:.8em">CONDICIÓN</th>
+          <th style="padding:6px 10px;text-align:center;color:#1f8f4f;font-weight:500;font-size:.8em"></th>
         </tr>
       </thead>
       <tbody>{signals_html}</tbody>
@@ -507,14 +516,14 @@ html = f"""<!DOCTYPE html>
 
   <!-- Contexto -->
   <div class="card">
-    <h2 style="color:#8592a6">CONTEXTO DE MERCADO</h2>
+    <h2 style="color:#1f8f4f">CONTEXTO DE MERCADO</h2>
     {ctx_html}
   </div>
 
   <!-- Tesis: proyección logística -->
   <div class="card">
-    <h2 style="color:#8592a6">TESIS — V(t) = Capital × (1+r)ᵗ × Φ_L(t) / Φ_L(0)</h2>
-    <p style="color:#6b7688;font-size:.8rem;margin-bottom:16px">
+    <h2 style="color:#1f8f4f">TESIS — V(t) = Capital × (1+r)ᵗ × Φ_L(t) / Φ_L(0)</h2>
+    <p style="color:#1f8f4f;font-size:.8rem;margin-bottom:16px">
       Φ_L(t) = 1 + K / (1 + e<sup>−γ·(t−t₀)</sup>) &nbsp;·&nbsp;
       t₀ = {TESIS_T0} (año {2026 + TESIS_T0}) &nbsp;·&nbsp;
       Inversión ejemplo: €{TESIS_CAPITAL:,}
@@ -535,13 +544,13 @@ html = f"""<!DOCTYPE html>
     <div style="overflow-x:auto;margin-top:16px">
     <table>
       <thead>
-        <tr style="border-bottom:1px solid #26303f">
-          <th style="padding:6px 10px;text-align:left;color:#6b7688;font-size:.8em">ESCENARIO</th>
-          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-size:.8em">r</th>
-          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-size:.8em">K</th>
-          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-size:.8em">γ</th>
-          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-size:.8em">€ año 5</th>
-          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-size:.8em">€ año 10</th>
+        <tr style="border-bottom:1px solid #146637">
+          <th style="padding:6px 10px;text-align:left;color:#1f8f4f;font-size:.8em">ESCENARIO</th>
+          <th style="padding:6px 10px;text-align:right;color:#1f8f4f;font-size:.8em">r</th>
+          <th style="padding:6px 10px;text-align:right;color:#1f8f4f;font-size:.8em">K</th>
+          <th style="padding:6px 10px;text-align:right;color:#1f8f4f;font-size:.8em">γ</th>
+          <th style="padding:6px 10px;text-align:right;color:#1f8f4f;font-size:.8em">€ año 5</th>
+          <th style="padding:6px 10px;text-align:right;color:#1f8f4f;font-size:.8em">€ año 10</th>
         </tr>
       </thead>
       <tbody>{tesis_params_rows}</tbody>
@@ -550,14 +559,14 @@ html = f"""<!DOCTYPE html>
 
     <!-- Tabla año a año -->
     <details style="margin-top:16px">
-      <summary style="color:#6b7688;font-size:.8rem;cursor:pointer;user-select:none">
+      <summary style="color:#1f8f4f;font-size:.8rem;cursor:pointer;user-select:none">
         Ver proyección año a año ▸
       </summary>
       <div style="overflow-x:auto;margin-top:10px">
       <table>
         <thead>
-          <tr style="border-bottom:1px solid #26303f">
-            <th style="padding:4px 10px;text-align:left;color:#6b7688;font-size:.8em">AÑO</th>
+          <tr style="border-bottom:1px solid #146637">
+            <th style="padding:4px 10px;text-align:left;color:#1f8f4f;font-size:.8em">AÑO</th>
             {"".join(f'<th style="padding:4px 10px;text-align:right;color:{sc["col"]};font-size:.8em">{name}</th>' for name, sc in TESIS_SCEN.items())}
           </tr>
         </thead>
@@ -568,7 +577,7 @@ html = f"""<!DOCTYPE html>
   </div>
 
   <!-- Footer -->
-  <div style="text-align:center;color:#55617a;font-size:.75rem;margin-top:24px;line-height:1.8">
+  <div style="text-align:center;color:#146637;font-size:.75rem;margin-top:24px;line-height:1.8">
     V(t) = Capital × (1+r)ᵗ × Φ_L(t) &nbsp;·&nbsp; Φ_L(t) = 1 + K/(1+e^(−γ·(t−t₀)))<br>
     Fuente: Yahoo Finance · Actualizado: {updated}<br>
     Qmetrika Labs
