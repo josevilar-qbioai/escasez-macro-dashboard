@@ -3,24 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <title>⚡ Tesis Escasez y Resiliencia</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:#0a0f1a;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
-  .wrap{max-width:900px;margin:0 auto;padding:24px 16px}
-  h1{font-size:1.4rem;font-weight:700;letter-spacing:.05em}
-  h2{font-size:.85rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
-  .card{background:#0f172a;border:1px solid #1e293b;border-radius:10px;padding:20px;margin-bottom:18px}
+  :root{
+    --bg:#0e141d; --card:#161e2b; --card2:#1a2331; --border:#26303f;
+    --text:#e6eaf0; --muted:#93a1b5; --faint:#69768a; --accent:#cf8b4f;
+  }
+  body{background:var(--bg);color:var(--text);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;min-height:100vh;
+    -webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+  .num,.val,.kpi .val,table td,table th{font-variant-numeric:tabular-nums}
+  .wrap{max-width:920px;margin:0 auto;padding:32px 18px 56px}
+  h1{font-size:1.35rem;font-weight:700;letter-spacing:-.01em}
+  h2{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 24px;margin-bottom:16px}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media(max-width:600px){.grid2{grid-template-columns:1fr}}
+  @media(max-width:600px){.grid2{grid-template-columns:1fr}.wrap{padding:22px 14px 44px}}
   .kpi{text-align:center}
-  .kpi .val{font-size:2rem;font-weight:700;line-height:1.1}
-  .kpi .lbl{font-size:.75rem;color:#64748b;margin-top:4px;text-transform:uppercase;letter-spacing:.08em}
-  table{width:100%;border-collapse:collapse}
-  .bar-bg{background:#1e293b;border-radius:999px;height:12px;overflow:hidden;margin:8px 0}
-  .bar-fg{height:12px;border-radius:999px;transition:width .4s}
-  .tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.8rem;font-weight:600}
-  .upd{color:#475569;font-size:.8rem}
+  .kpi .val{font-size:1.9rem;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+  .kpi .lbl{font-size:.72rem;color:var(--faint);margin-top:5px;text-transform:uppercase;letter-spacing:.08em}
+  table{width:100%;border-collapse:collapse;font-size:.9rem}
+  .bar-bg{background:var(--border);border-radius:999px;height:8px;overflow:hidden;margin:10px 0}
+  .bar-fg{height:8px;border-radius:999px;transition:width .4s}
+  .tag{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.75rem;font-weight:600;letter-spacing:.02em}
+  .upd{color:var(--faint);font-size:.78rem}
 </style>
 </head>
 <body>
@@ -30,12 +40,12 @@
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:8px">
     <div>
       <h1>⚡ Tesis Escasez y Resiliencia</h1>
-      <p style="color:#475569;font-size:.85rem;margin-top:4px">
+      <p style="color:#6b7688;font-size:.85rem;margin-top:4px">
         V(t) = Capital × (1+r)ᵗ × Φ_L(t) &nbsp;·&nbsp; Qmetrika Labs
       </p>
     </div>
     <div style="text-align:right">
-      <span class="tag" style="background:#f8717122;color:#f87171;border:1px solid #f8717144">
+      <span class="tag" style="background:#d97a6b22;color:#d97a6b;border:1px solid #d97a6b44">
         TESIS DÉBIL
       </span>
       <p class="upd" style="margin-top:6px">Datos: 2026-09-12 20:30</p>
@@ -45,21 +55,21 @@
   <!-- Score y correlación SOX/Cobre -->
   <div class="card">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
-      <h2 style="margin:0;color:#38bdf8">⚡ SCORE ESCASEZ</h2>
-      <span style="font-size:1.5rem;font-weight:700;color:#f87171">25%
-        <span style="font-size:.9rem;color:#64748b">(3/12)</span>
+      <h2 style="margin:0;color:#cf8b4f">⚡ SCORE ESCASEZ</h2>
+      <span style="font-size:1.5rem;font-weight:700;color:#d97a6b">25%
+        <span style="font-size:.9rem;color:#8592a6">(3/12)</span>
       </span>
     </div>
     <div class="bar-bg">
-      <div class="bar-fg" style="width:25%;background:#f87171"></div>
+      <div class="bar-fg" style="width:25%;background:#d97a6b"></div>
     </div>
-    <div style="margin-top:16px;padding:14px;background:#0a0f1a;border-radius:8px;border-left:3px solid #f87171">
-      <div style="font-size:1rem;font-weight:700;color:#f87171">
-        🔴 CORRELACIÓN SOX/COBRE — CONTRACCIÓN
+    <div style="margin-top:16px;padding:14px;background:#0e141d;border-radius:8px;border-left:3px solid #d97a6b">
+      <div style="font-size:1rem;font-weight:700;color:#d97a6b">
+        ● CORRELACIÓN SOX/COBRE — CONTRACCIÓN
       </div>
       <div style="color:#94a3b8;font-size:.85rem;margin-top:6px">Modo defensivo — esperar estabilización</div>
-      <div style="color:#64748b;font-size:.8rem;margin-top:8px">
-        SOX 11.824.00 (<span style="color:#f87171">-4.6%</span>/1M) &nbsp;·&nbsp; Cobre 6.470$ (<span style="color:#f87171">-1.9%</span>/1M)
+      <div style="color:#8592a6;font-size:.8rem;margin-top:8px">
+        SOX 11.824.00 (<span style="color:#d97a6b">-4.6%</span>/1M) &nbsp;·&nbsp; Cobre 6.470$ (<span style="color:#d97a6b">-1.9%</span>/1M)
       </div>
     </div>
   </div>
@@ -67,24 +77,24 @@
   <!-- KPIs rápidos -->
   <div class="grid2">
     <div class="card kpi">
-      <div class="val" style="color:#38bdf8">11.824</div>
+      <div class="val" style="color:#cf8b4f">11.824</div>
       <div class="lbl">SOX Semiconductores</div>
-      <div style="margin-top:6px"><span style="color:#f87171">-4.6%</span> en 1 mes</div>
+      <div style="margin-top:6px"><span style="color:#d97a6b">-4.6%</span> en 1 mes</div>
     </div>
     <div class="card kpi">
       <div class="val" style="color:#fb923c">6.470$</div>
       <div class="lbl">Cobre (USD/lb)</div>
-      <div style="margin-top:6px"><span style="color:#f87171">-1.9%</span> en 1 mes</div>
+      <div style="margin-top:6px"><span style="color:#d97a6b">-1.9%</span> en 1 mes</div>
     </div>
     <div class="card kpi">
-      <div class="val" style="color:#facc15">₿ 77.176€</div>
+      <div class="val" style="color:#e0b341">₿ 77.176€</div>
       <div class="lbl">Bitcoin (EUR)</div>
-      <div style="margin-top:6px"><span style="color:#4ade80">+0.1%</span> en 1 mes</div>
+      <div style="margin-top:6px"><span style="color:#5cc98d">+0.1%</span> en 1 mes</div>
     </div>
     <div class="card kpi">
       <div class="val" style="color:#94a3b8">15.8</div>
       <div class="lbl">VIX Volatilidad</div>
-      <div style="margin-top:6px;color:#4ade80">
+      <div style="margin-top:6px;color:#5cc98d">
         < 20 — entorno favorable
       </div>
     </div>
@@ -92,108 +102,108 @@
 
   <!-- Gráfico variación 1M -->
   <div class="card">
-    <h2 style="color:#64748b">VARIACIÓN 1 MES — INDICADORES CLAVE</h2>
-    <svg viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:160px;display:block"><rect x="47.0" y="42.0" width="56.0" height="78.0" fill="#f87171" rx="3"/><text x="75.0" y="156" text-anchor="middle" font-size="9" fill="#888">SOX</text><text x="75.0" y="130.0" text-anchor="middle" font-size="9" fill="#f87171">-4.6%</text><rect x="117.0" y="42.0" width="56.0" height="32.4" fill="#f87171" rx="3"/><text x="145.0" y="156" text-anchor="middle" font-size="9" fill="#888">Cobre</text><text x="145.0" y="84.5" text-anchor="middle" font-size="9" fill="#f87171">-1.9%</text><rect x="187.0" y="42.0" width="56.0" height="16.1" fill="#f87171" rx="3"/><text x="215.0" y="156" text-anchor="middle" font-size="9" fill="#888">NASDAQ</text><text x="215.0" y="68.2" text-anchor="middle" font-size="9" fill="#f87171">-1.0%</text><rect x="257.0" y="40.0" width="56.0" height="2.0" fill="#4ade80" rx="3"/><text x="285.0" y="156" text-anchor="middle" font-size="9" fill="#888">BTC</text><text x="285.0" y="36.0" text-anchor="middle" font-size="9" fill="#4ade80">+0.1%</text><rect x="327.0" y="42.0" width="56.0" height="39.8" fill="#f87171" rx="3"/><text x="355.0" y="156" text-anchor="middle" font-size="9" fill="#888">Uranio</text><text x="355.0" y="91.8" text-anchor="middle" font-size="9" fill="#f87171">-2.4%</text><rect x="397.0" y="42.0" width="56.0" height="55.6" fill="#f87171" rx="3"/><text x="425.0" y="156" text-anchor="middle" font-size="9" fill="#888">XLU</text><text x="425.0" y="107.6" text-anchor="middle" font-size="9" fill="#f87171">-3.3%</text><rect x="467.0" y="42.0" width="56.0" height="16.3" fill="#f87171" rx="3"/><text x="495.0" y="156" text-anchor="middle" font-size="9" fill="#888">Oro</text><text x="495.0" y="68.3" text-anchor="middle" font-size="9" fill="#f87171">-1.0%</text><rect x="537.0" y="42.0" width="56.0" height="19.8" fill="#f87171" rx="3"/><text x="565.0" y="156" text-anchor="middle" font-size="9" fill="#888">S&P500</text><text x="565.0" y="71.8" text-anchor="middle" font-size="9" fill="#f87171">-1.2%</text><line x1="40" y1="42.0" x2="600" y2="42.0" stroke="#444" stroke-width="1"/></svg>
+    <h2 style="color:#8592a6">VARIACIÓN 1 MES — INDICADORES CLAVE</h2>
+    <svg viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:160px;display:block"><rect x="47.0" y="42.0" width="56.0" height="78.0" fill="#d97a6b" rx="3"/><text x="75.0" y="156" text-anchor="middle" font-size="9" fill="#888">SOX</text><text x="75.0" y="130.0" text-anchor="middle" font-size="9" fill="#d97a6b">-4.6%</text><rect x="117.0" y="42.0" width="56.0" height="32.4" fill="#d97a6b" rx="3"/><text x="145.0" y="156" text-anchor="middle" font-size="9" fill="#888">Cobre</text><text x="145.0" y="84.5" text-anchor="middle" font-size="9" fill="#d97a6b">-1.9%</text><rect x="187.0" y="42.0" width="56.0" height="16.1" fill="#d97a6b" rx="3"/><text x="215.0" y="156" text-anchor="middle" font-size="9" fill="#888">NASDAQ</text><text x="215.0" y="68.2" text-anchor="middle" font-size="9" fill="#d97a6b">-1.0%</text><rect x="257.0" y="40.0" width="56.0" height="2.0" fill="#5cc98d" rx="3"/><text x="285.0" y="156" text-anchor="middle" font-size="9" fill="#888">BTC</text><text x="285.0" y="36.0" text-anchor="middle" font-size="9" fill="#5cc98d">+0.1%</text><rect x="327.0" y="42.0" width="56.0" height="39.8" fill="#d97a6b" rx="3"/><text x="355.0" y="156" text-anchor="middle" font-size="9" fill="#888">Uranio</text><text x="355.0" y="91.8" text-anchor="middle" font-size="9" fill="#d97a6b">-2.4%</text><rect x="397.0" y="42.0" width="56.0" height="55.6" fill="#d97a6b" rx="3"/><text x="425.0" y="156" text-anchor="middle" font-size="9" fill="#888">XLU</text><text x="425.0" y="107.6" text-anchor="middle" font-size="9" fill="#d97a6b">-3.3%</text><rect x="467.0" y="42.0" width="56.0" height="16.3" fill="#d97a6b" rx="3"/><text x="495.0" y="156" text-anchor="middle" font-size="9" fill="#888">Oro</text><text x="495.0" y="68.3" text-anchor="middle" font-size="9" fill="#d97a6b">-1.0%</text><rect x="537.0" y="42.0" width="56.0" height="19.8" fill="#d97a6b" rx="3"/><text x="565.0" y="156" text-anchor="middle" font-size="9" fill="#888">S&P500</text><text x="565.0" y="71.8" text-anchor="middle" font-size="9" fill="#d97a6b">-1.2%</text><line x1="40" y1="42.0" x2="600" y2="42.0" stroke="#444" stroke-width="1"/></svg>
   </div>
 
   <!-- Señales por pilar -->
   <div class="card">
-    <h2 style="color:#64748b">SEÑALES POR PILAR</h2>
+    <h2 style="color:#8592a6">SEÑALES POR PILAR</h2>
     <div style="overflow-x:auto">
     <table>
       <thead>
-        <tr style="border-bottom:1px solid #1e293b">
-          <th style="padding:6px 10px;text-align:left;color:#475569;font-weight:500;font-size:.8em">SEÑAL</th>
-          <th style="padding:6px 10px;text-align:right;color:#475569;font-weight:500;font-size:.8em">VALOR</th>
-          <th style="padding:6px 10px;text-align:right;color:#475569;font-weight:500;font-size:.8em">1 MES</th>
-          <th style="padding:6px 10px;color:#475569;font-weight:500;font-size:.8em">CONDICIÓN</th>
-          <th style="padding:6px 10px;text-align:center;color:#475569;font-weight:500;font-size:.8em"></th>
+        <tr style="border-bottom:1px solid #26303f">
+          <th style="padding:6px 10px;text-align:left;color:#6b7688;font-weight:500;font-size:.8em">SEÑAL</th>
+          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">VALOR</th>
+          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">1 MES</th>
+          <th style="padding:6px 10px;color:#6b7688;font-weight:500;font-size:.8em">CONDICIÓN</th>
+          <th style="padding:6px 10px;text-align:center;color:#6b7688;font-weight:500;font-size:.8em"></th>
         </tr>
       </thead>
-      <tbody><tr><td colspan="5" style="padding:8px 10px 2px;color:#38bdf8;font-weight:bold;font-size:.8em;letter-spacing:.1em">AUTOREPLICACIÓN IA</td></tr>
+      <tbody><tr><td colspan="5" style="padding:8px 10px 2px;color:#cf8b4f;font-weight:bold;font-size:.8em;letter-spacing:.1em">AUTOREPLICACIÓN IA</td></tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">📡 SOX Semiconductores</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">11.824.00</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#f87171">-4.6%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#d97a6b">-4.6%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">+2%/1M</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">💻 NASDAQ Tech</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">26.333</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#f87171">-1.0%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#d97a6b">-1.0%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">+2%/1M</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">🤖 ROBO Robótica</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">79.11</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#f87171">-6.7%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#d97a6b">-6.7%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">+2%/1M</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">⚛ QTUM Cuántica</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">147.41</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#f87171">-6.0%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#d97a6b">-6.0%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">+3%/1M</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
-        </tr><tr><td colspan="5" style="padding:8px 10px 2px;color:#facc15;font-weight:bold;font-size:.8em;letter-spacing:.1em">ESCASEZ DIGITAL</td></tr>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
+        </tr><tr><td colspan="5" style="padding:8px 10px 2px;color:#e0b341;font-weight:bold;font-size:.8em;letter-spacing:.1em">ESCASEZ DIGITAL</td></tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">₿ BTC momentum</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">77.176€</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#4ade80">+0.1%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#5cc98d">+0.1%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">+5%/1M</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">₿ BTC vs NASDAQ</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">—</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#4ade80">+0.1%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#5cc98d">+0.1%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">BTC > NASDAQ 1M</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#4ade80;font-size:1.1em">🟢</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#5cc98d;vertical-align:middle"></span></td>
         </tr><tr><td colspan="5" style="padding:8px 10px 2px;color:#fb923c;font-weight:bold;font-size:.8em;letter-spacing:.1em">ENERGÍA / GRID</td></tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">⚛️ Uranio (Cameco)</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">96.68$</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#f87171">-2.4%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#d97a6b">-2.4%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">+2%/1M</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">⚡ XLU Utilities</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">42.39$</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#f87171">-3.3%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#d97a6b">-3.3%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">+1%/1M</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr><tr><td colspan="5" style="padding:8px 10px 2px;color:#86efac;font-weight:bold;font-size:.8em;letter-spacing:.1em">ESCASEZ FÍSICA</td></tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">🟠 Cobre</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">6.470$</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#f87171">-1.9%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#d97a6b">-1.9%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">+2%/1M</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">🥇 Oro</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">4.366$</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#f87171">-1.0%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#d97a6b">-1.0%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">+2%/1M</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr><tr><td colspan="5" style="padding:8px 10px 2px;color:#94a3b8;font-weight:bold;font-size:.8em;letter-spacing:.1em">RESILIENCIA</td></tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">📈 Spread 10Y-13W</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">1.06%</td>
           <td style="padding:6px 10px;text-align:right">—</td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">>0.3%</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#4ade80;font-size:1.1em">🟢</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#5cc98d;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc">😰 VIX Volatilidad</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">15.8</td>
           <td style="padding:6px 10px;text-align:right">—</td>
           <td style="padding:6px 10px;color:#666;font-size:.85em"><20</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#4ade80;font-size:1.1em">🟢</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#5cc98d;vertical-align:middle"></span></td>
         </tr></tbody>
     </table>
     </div>
@@ -202,69 +212,69 @@
   <!-- Régimen macro (FRED) -->
   
   <div class="card">
-    <h2 style="color:#64748b">RÉGIMEN MACRO · FRED</h2>
+    <h2 style="color:#8592a6">RÉGIMEN MACRO · FRED</h2>
     <div style="overflow-x:auto">
     <table>
-      <thead><tr style="border-bottom:1px solid #1e293b">
-        <th style="padding:6px 10px;text-align:left;color:#475569;font-weight:500;font-size:.8em">SEÑAL</th>
-        <th style="padding:6px 10px;text-align:right;color:#475569;font-weight:500;font-size:.8em">VALOR</th>
-        <th style="padding:6px 10px;text-align:right;color:#475569;font-weight:500;font-size:.8em">1 MES</th>
-        <th style="padding:6px 10px;color:#475569;font-weight:500;font-size:.8em">CONDICIÓN</th>
-        <th style="padding:6px 10px;text-align:center;color:#475569;font-weight:500;font-size:.8em"></th>
+      <thead><tr style="border-bottom:1px solid #26303f">
+        <th style="padding:6px 10px;text-align:left;color:#6b7688;font-weight:500;font-size:.8em">SEÑAL</th>
+        <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">VALOR</th>
+        <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">1 MES</th>
+        <th style="padding:6px 10px;color:#6b7688;font-weight:500;font-size:.8em">CONDICIÓN</th>
+        <th style="padding:6px 10px;text-align:center;color:#6b7688;font-weight:500;font-size:.8em"></th>
       </tr></thead>
       <tbody>
         <tr>
           <td style="padding:6px 10px;color:#ccc"> Tipos reales 10a (TIPS)</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">2.55%</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#4ade80">+12.0bp</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#5cc98d">+12.0bp</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">cae = favorable</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc"> M2 EE.UU.</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">23.218.0</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#4ade80">+0.4%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#5cc98d">+0.4%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">sube = favorable</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#4ade80;font-size:1.1em">🟢</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#5cc98d;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc"> Balance Fed</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">6.741</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#f87171">-0.1%</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#d97a6b">-0.1%</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">sube = favorable</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc"> Spread High Yield</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">2.70%</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#f87171">-2.0bp</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#d97a6b">-2.0bp</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">< 4% = sano</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#4ade80;font-size:1.1em">🟢</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#5cc98d;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc"> Inflación esperada 10a</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">2.36%</td>
-          <td style="padding:6px 10px;text-align:right"><span style="color:#4ade80">+10.0bp</span></td>
+          <td style="padding:6px 10px;text-align:right"><span style="color:#5cc98d">+10.0bp</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">sube = activos reales</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#4ade80;font-size:1.1em">🟢</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#5cc98d;vertical-align:middle"></span></td>
         </tr></tbody>
     </table>
     </div>
-    <p style="color:#334155;font-size:.72rem;margin-top:8px">Fuente: FRED (Fed de San Luis). Los «gates» del régimen: tipos reales, liquidez (M2), balance de la Fed, crédito e inflación esperada.</p>
+    <p style="color:#55617a;font-size:.72rem;margin-top:8px">Fuente: FRED (Fed de San Luis). Los «gates» del régimen: tipos reales, liquidez (M2), balance de la Fed, crédito e inflación esperada.</p>
   </div>
 
   <!-- Escasez física · inventarios -->
   
   <div class="card">
-    <h2 style="color:#64748b">ESCASEZ FÍSICA · INVENTARIOS</h2>
+    <h2 style="color:#8592a6">ESCASEZ FÍSICA · INVENTARIOS</h2>
     <div style="overflow-x:auto">
     <table>
-      <thead><tr style="border-bottom:1px solid #1e293b">
-        <th style="padding:6px 10px;text-align:left;color:#475569;font-weight:500;font-size:.8em">SEÑAL</th>
-        <th style="padding:6px 10px;text-align:right;color:#475569;font-weight:500;font-size:.8em">VALOR</th>
-        <th style="padding:6px 10px;text-align:right;color:#475569;font-weight:500;font-size:.8em">CAMBIO</th>
-        <th style="padding:6px 10px;color:#475569;font-weight:500;font-size:.8em">CONDICIÓN</th>
-        <th style="padding:6px 10px;text-align:center;color:#475569;font-weight:500;font-size:.8em"></th>
+      <thead><tr style="border-bottom:1px solid #26303f">
+        <th style="padding:6px 10px;text-align:left;color:#6b7688;font-weight:500;font-size:.8em">SEÑAL</th>
+        <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">VALOR</th>
+        <th style="padding:6px 10px;text-align:right;color:#6b7688;font-weight:500;font-size:.8em">CAMBIO</th>
+        <th style="padding:6px 10px;color:#6b7688;font-weight:500;font-size:.8em">CONDICIÓN</th>
+        <th style="padding:6px 10px;text-align:center;color:#6b7688;font-weight:500;font-size:.8em"></th>
       </tr></thead>
       <tbody>
         <tr>
@@ -272,48 +282,48 @@
           <td style="padding:6px 10px;color:#fff;text-align:right">234.475 t</td>
           <td style="padding:6px 10px;text-align:right"><span style="color:#888">—</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">cae = escasez</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr>
         <tr>
           <td style="padding:6px 10px;color:#ccc"> Uranio spot U3O8</td>
           <td style="padding:6px 10px;color:#fff;text-align:right">90.13$</td>
           <td style="padding:6px 10px;text-align:right"><span style="color:#888">—</span></td>
           <td style="padding:6px 10px;color:#666;font-size:.85em">sube = déficit</td>
-          <td style="padding:6px 10px;text-align:center"><span style="color:#f87171;font-size:1.1em">🔴</span></td>
+          <td style="padding:6px 10px;text-align:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d97a6b;vertical-align:middle"></span></td>
         </tr></tbody>
     </table>
     </div>
-    <p style="color:#334155;font-size:.72rem;margin-top:8px">Inventario de cobre en almacenes LME (Westmetall) y precio spot del uranio U3O8 (Yellowcake plc). Stock de cobre cayendo o uranio al alza = escasez física.</p>
+    <p style="color:#55617a;font-size:.72rem;margin-top:8px">Inventario de cobre en almacenes LME (Westmetall) y precio spot del uranio U3O8 (Yellowcake plc). Stock de cobre cayendo o uranio al alza = escasez física.</p>
   </div>
 
   <!-- Contexto -->
   <div class="card">
-    <h2 style="color:#64748b">CONTEXTO DE MERCADO</h2>
-    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e293b">
+    <h2 style="color:#8592a6">CONTEXTO DE MERCADO</h2>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #26303f">
       <span style="color:#94a3b8">S&P 500</span>
-      <span style="color:#fff">7.657&nbsp;&nbsp;<span style="color:#f87171">-1.2%</span></span>
-    </div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e293b">
+      <span style="color:#fff">7.657&nbsp;&nbsp;<span style="color:#d97a6b">-1.2%</span></span>
+    </div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #26303f">
       <span style="color:#94a3b8">VIX</span>
-      <span style="color:#fff">15.8&nbsp;&nbsp;<span style="color:#4ade80">+8.3%</span></span>
-    </div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e293b">
+      <span style="color:#fff">15.8&nbsp;&nbsp;<span style="color:#5cc98d">+8.3%</span></span>
+    </div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #26303f">
       <span style="color:#94a3b8">Spread 10Y-13W</span>
       <span style="color:#fff">1.06%&nbsp;&nbsp;<span style="color:#888">—</span></span>
-    </div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e293b">
+    </div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #26303f">
       <span style="color:#94a3b8">EUR/USD</span>
-      <span style="color:#fff">1.1601&nbsp;&nbsp;<span style="color:#4ade80">+0.6%</span></span>
-    </div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e293b">
+      <span style="color:#fff">1.1601&nbsp;&nbsp;<span style="color:#5cc98d">+0.6%</span></span>
+    </div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #26303f">
       <span style="color:#94a3b8">Oro (USD)</span>
-      <span style="color:#fff">4.366$&nbsp;&nbsp;<span style="color:#f87171">-1.0%</span></span>
-    </div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e293b">
+      <span style="color:#fff">4.366$&nbsp;&nbsp;<span style="color:#d97a6b">-1.0%</span></span>
+    </div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #26303f">
       <span style="color:#94a3b8">Petróleo WTI</span>
-      <span style="color:#fff">100.0$&nbsp;&nbsp;<span style="color:#4ade80">+20.1%</span></span>
+      <span style="color:#fff">100.0$&nbsp;&nbsp;<span style="color:#5cc98d">+20.1%</span></span>
     </div>
   </div>
 
   <!-- Tesis: proyección logística -->
   <div class="card">
-    <h2 style="color:#64748b">TESIS — V(t) = Capital × (1+r)ᵗ × Φ_L(t) / Φ_L(0)</h2>
-    <p style="color:#475569;font-size:.8rem;margin-bottom:16px">
+    <h2 style="color:#8592a6">TESIS — V(t) = Capital × (1+r)ᵗ × Φ_L(t) / Φ_L(0)</h2>
+    <p style="color:#6b7688;font-size:.8rem;margin-bottom:16px">
       Φ_L(t) = 1 + K / (1 + e<sup>−γ·(t−t₀)</sup>) &nbsp;·&nbsp;
       t₀ = 5 (año 2031) &nbsp;·&nbsp;
       Inversión ejemplo: €10,000
@@ -321,56 +331,56 @@
 
     <!-- Leyenda -->
     <div style="display:flex;gap:20px;margin-bottom:12px;flex-wrap:wrap">
-      <span style="color:#4ade80;font-weight:700;font-size:.85rem">▬ BASE</span><span style="color:#facc15;font-weight:700;font-size:.85rem">▬ ÓPTIMO</span><span style="color:#60a5fa;font-weight:700;font-size:.85rem">▬ ACELERADO</span>
+      <span style="color:#5cc98d;font-weight:700;font-size:.85rem">▬ BASE</span><span style="color:#e0b341;font-weight:700;font-size:.85rem">▬ ÓPTIMO</span><span style="color:#6f9bd0;font-weight:700;font-size:.85rem">▬ ACELERADO</span>
     </div>
 
     <!-- Gráfico curvas -->
-    <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:220px;display:block"><line x1="60" y1="190.0" x2="620" y2="190.0" stroke="#1e293b" stroke-width="1"/><text x="56" y="194.0" text-anchor="end" font-size="9" fill="#475569">€10K</text><line x1="60" y1="147.5" x2="620" y2="147.5" stroke="#1e293b" stroke-width="1"/><text x="56" y="151.5" text-anchor="end" font-size="9" fill="#475569">€248K</text><line x1="60" y1="105.0" x2="620" y2="105.0" stroke="#1e293b" stroke-width="1"/><text x="56" y="109.0" text-anchor="end" font-size="9" fill="#475569">€486K</text><line x1="60" y1="62.5" x2="620" y2="62.5" stroke="#1e293b" stroke-width="1"/><text x="56" y="66.5" text-anchor="end" font-size="9" fill="#475569">€724K</text><line x1="60" y1="20.0" x2="620" y2="20.0" stroke="#1e293b" stroke-width="1"/><text x="56" y="24.0" text-anchor="end" font-size="9" fill="#475569">€961K</text><text x="60.0" y="214" text-anchor="middle" font-size="9" fill="#475569">2026</text><text x="172.0" y="214" text-anchor="middle" font-size="9" fill="#475569">2028</text><text x="284.0" y="214" text-anchor="middle" font-size="9" fill="#475569">2030</text><text x="396.0" y="214" text-anchor="middle" font-size="9" fill="#475569">2032</text><text x="508.0" y="214" text-anchor="middle" font-size="9" fill="#475569">2034</text><text x="620.0" y="214" text-anchor="middle" font-size="9" fill="#475569">2036</text><polyline points="60.0,190.0 116.0,189.5 172.0,188.7 228.0,187.7 284.0,186.1 340.0,184.1 396.0,181.4 452.0,178.1 508.0,174.2 564.0,169.7 620.0,164.4" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linejoin="round"/><circle cx="620.0" cy="164.4" r="4" fill="#4ade80"/><polyline points="60.0,190.0 116.0,189.4 172.0,188.4 228.0,186.5 284.0,182.8 340.0,176.1 396.0,166.7 452.0,155.6 508.0,143.3 564.0,129.4 620.0,112.8" fill="none" stroke="#facc15" stroke-width="2.5" stroke-linejoin="round"/><circle cx="620.0" cy="112.8" r="4" fill="#facc15"/><polyline points="60.0,190.0 116.0,189.4 172.0,188.6 228.0,186.8 284.0,181.1 340.0,165.3 396.0,141.0 452.0,116.7 508.0,91.0 564.0,59.9 620.0,20.0" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-linejoin="round"/><circle cx="620.0" cy="20.0" r="4" fill="#60a5fa"/></svg>
+    <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:220px;display:block"><line x1="60" y1="190.0" x2="620" y2="190.0" stroke="#26303f" stroke-width="1"/><text x="56" y="194.0" text-anchor="end" font-size="9" fill="#6b7688">€10K</text><line x1="60" y1="147.5" x2="620" y2="147.5" stroke="#26303f" stroke-width="1"/><text x="56" y="151.5" text-anchor="end" font-size="9" fill="#6b7688">€248K</text><line x1="60" y1="105.0" x2="620" y2="105.0" stroke="#26303f" stroke-width="1"/><text x="56" y="109.0" text-anchor="end" font-size="9" fill="#6b7688">€486K</text><line x1="60" y1="62.5" x2="620" y2="62.5" stroke="#26303f" stroke-width="1"/><text x="56" y="66.5" text-anchor="end" font-size="9" fill="#6b7688">€724K</text><line x1="60" y1="20.0" x2="620" y2="20.0" stroke="#26303f" stroke-width="1"/><text x="56" y="24.0" text-anchor="end" font-size="9" fill="#6b7688">€961K</text><text x="60.0" y="214" text-anchor="middle" font-size="9" fill="#6b7688">2026</text><text x="172.0" y="214" text-anchor="middle" font-size="9" fill="#6b7688">2028</text><text x="284.0" y="214" text-anchor="middle" font-size="9" fill="#6b7688">2030</text><text x="396.0" y="214" text-anchor="middle" font-size="9" fill="#6b7688">2032</text><text x="508.0" y="214" text-anchor="middle" font-size="9" fill="#6b7688">2034</text><text x="620.0" y="214" text-anchor="middle" font-size="9" fill="#6b7688">2036</text><polyline points="60.0,190.0 116.0,189.5 172.0,188.7 228.0,187.7 284.0,186.1 340.0,184.1 396.0,181.4 452.0,178.1 508.0,174.2 564.0,169.7 620.0,164.4" fill="none" stroke="#5cc98d" stroke-width="2.5" stroke-linejoin="round"/><circle cx="620.0" cy="164.4" r="4" fill="#5cc98d"/><polyline points="60.0,190.0 116.0,189.4 172.0,188.4 228.0,186.5 284.0,182.8 340.0,176.1 396.0,166.7 452.0,155.6 508.0,143.3 564.0,129.4 620.0,112.8" fill="none" stroke="#e0b341" stroke-width="2.5" stroke-linejoin="round"/><circle cx="620.0" cy="112.8" r="4" fill="#e0b341"/><polyline points="60.0,190.0 116.0,189.4 172.0,188.6 228.0,186.8 284.0,181.1 340.0,165.3 396.0,141.0 452.0,116.7 508.0,91.0 564.0,59.9 620.0,20.0" fill="none" stroke="#6f9bd0" stroke-width="2.5" stroke-linejoin="round"/><circle cx="620.0" cy="20.0" r="4" fill="#6f9bd0"/></svg>
 
     <!-- Parámetros -->
     <div style="overflow-x:auto;margin-top:16px">
     <table>
       <thead>
-        <tr style="border-bottom:1px solid #1e293b">
-          <th style="padding:6px 10px;text-align:left;color:#475569;font-size:.8em">ESCENARIO</th>
-          <th style="padding:6px 10px;text-align:right;color:#475569;font-size:.8em">r</th>
-          <th style="padding:6px 10px;text-align:right;color:#475569;font-size:.8em">K</th>
-          <th style="padding:6px 10px;text-align:right;color:#475569;font-size:.8em">γ</th>
-          <th style="padding:6px 10px;text-align:right;color:#475569;font-size:.8em">€ año 5</th>
-          <th style="padding:6px 10px;text-align:right;color:#475569;font-size:.8em">€ año 10</th>
+        <tr style="border-bottom:1px solid #26303f">
+          <th style="padding:6px 10px;text-align:left;color:#6b7688;font-size:.8em">ESCENARIO</th>
+          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-size:.8em">r</th>
+          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-size:.8em">K</th>
+          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-size:.8em">γ</th>
+          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-size:.8em">€ año 5</th>
+          <th style="padding:6px 10px;text-align:right;color:#6b7688;font-size:.8em">€ año 10</th>
         </tr>
       </thead>
-      <tbody><tr><td style="padding:6px 10px;color:#4ade80;font-weight:700">BASE</td><td style="padding:6px 10px;text-align:right;color:#e2e8f0">20%</td><td style="padding:6px 10px;text-align:right;color:#e2e8f0">2.0</td><td style="padding:6px 10px;text-align:right;color:#e2e8f0">0.50</td><td style="padding:6px 10px;text-align:right;color:#4ade80">€43,211</td><td style="padding:6px 10px;text-align:right;color:#4ade80">€153,126</td></tr>
-<tr><td style="padding:6px 10px;color:#facc15;font-weight:700">ÓPTIMO</td><td style="padding:6px 10px;text-align:right;color:#e2e8f0">25%</td><td style="padding:6px 10px;text-align:right;color:#e2e8f0">4.0</td><td style="padding:6px 10px;text-align:right;color:#e2e8f0">0.90</td><td style="padding:6px 10px;text-align:right;color:#facc15">€87,699</td><td style="padding:6px 10px;text-align:right;color:#facc15">€442,137</td></tr>
-<tr><td style="padding:6px 10px;color:#60a5fa;font-weight:700">ACELERADO</td><td style="padding:6px 10px;text-align:right;color:#e2e8f0">30%</td><td style="padding:6px 10px;text-align:right;color:#e2e8f0">6.0</td><td style="padding:6px 10px;text-align:right;color:#e2e8f0">1.50</td><td style="padding:6px 10px;text-align:right;color:#60a5fa">€148,026</td><td style="padding:6px 10px;text-align:right;color:#60a5fa">€961,364</td></tr>
+      <tbody><tr><td style="padding:6px 10px;color:#5cc98d;font-weight:700">BASE</td><td style="padding:6px 10px;text-align:right;color:#e6eaf0">20%</td><td style="padding:6px 10px;text-align:right;color:#e6eaf0">2.0</td><td style="padding:6px 10px;text-align:right;color:#e6eaf0">0.50</td><td style="padding:6px 10px;text-align:right;color:#5cc98d">€43,211</td><td style="padding:6px 10px;text-align:right;color:#5cc98d">€153,126</td></tr>
+<tr><td style="padding:6px 10px;color:#e0b341;font-weight:700">ÓPTIMO</td><td style="padding:6px 10px;text-align:right;color:#e6eaf0">25%</td><td style="padding:6px 10px;text-align:right;color:#e6eaf0">4.0</td><td style="padding:6px 10px;text-align:right;color:#e6eaf0">0.90</td><td style="padding:6px 10px;text-align:right;color:#e0b341">€87,699</td><td style="padding:6px 10px;text-align:right;color:#e0b341">€442,137</td></tr>
+<tr><td style="padding:6px 10px;color:#6f9bd0;font-weight:700">ACELERADO</td><td style="padding:6px 10px;text-align:right;color:#e6eaf0">30%</td><td style="padding:6px 10px;text-align:right;color:#e6eaf0">6.0</td><td style="padding:6px 10px;text-align:right;color:#e6eaf0">1.50</td><td style="padding:6px 10px;text-align:right;color:#6f9bd0">€148,026</td><td style="padding:6px 10px;text-align:right;color:#6f9bd0">€961,364</td></tr>
 </tbody>
     </table>
     </div>
 
     <!-- Tabla año a año -->
     <details style="margin-top:16px">
-      <summary style="color:#475569;font-size:.8rem;cursor:pointer;user-select:none">
+      <summary style="color:#6b7688;font-size:.8rem;cursor:pointer;user-select:none">
         Ver proyección año a año ▸
       </summary>
       <div style="overflow-x:auto;margin-top:10px">
       <table>
         <thead>
-          <tr style="border-bottom:1px solid #1e293b">
-            <th style="padding:4px 10px;text-align:left;color:#475569;font-size:.8em">AÑO</th>
-            <th style="padding:4px 10px;text-align:right;color:#4ade80;font-size:.8em">BASE</th><th style="padding:4px 10px;text-align:right;color:#facc15;font-size:.8em">ÓPTIMO</th><th style="padding:4px 10px;text-align:right;color:#60a5fa;font-size:.8em">ACELERADO</th>
+          <tr style="border-bottom:1px solid #26303f">
+            <th style="padding:4px 10px;text-align:left;color:#6b7688;font-size:.8em">AÑO</th>
+            <th style="padding:4px 10px;text-align:right;color:#5cc98d;font-size:.8em">BASE</th><th style="padding:4px 10px;text-align:right;color:#e0b341;font-size:.8em">ÓPTIMO</th><th style="padding:4px 10px;text-align:right;color:#6f9bd0;font-size:.8em">ACELERADO</th>
           </tr>
         </thead>
-        <tbody><tr style="font-weight:700"><td style="padding:4px 10px;color:#64748b">2026</td><td style="padding:4px 10px;text-align:right;color:#4ade80">€10.000 <span style="color:#475569;font-size:.8em">×1.0</span></td><td style="padding:4px 10px;text-align:right;color:#facc15">€10.000 <span style="color:#475569;font-size:.8em">×1.0</span></td><td style="padding:4px 10px;text-align:right;color:#60a5fa">€10.000 <span style="color:#475569;font-size:.8em">×1.0</span></td></tr>
-<tr><td style="padding:4px 10px;color:#64748b">2027</td><td style="padding:4px 10px;text-align:right;color:#4ade80">€12.903 <span style="color:#475569;font-size:.8em">×1.3</span></td><td style="padding:4px 10px;text-align:right;color:#facc15">€13.248 <span style="color:#475569;font-size:.8em">×1.3</span></td><td style="padding:4px 10px;text-align:right;color:#60a5fa">€13.149 <span style="color:#475569;font-size:.8em">×1.3</span></td></tr>
-<tr><td style="padding:4px 10px;color:#64748b">2028</td><td style="padding:4px 10px;text-align:right;color:#4ade80">€17.065 <span style="color:#475569;font-size:.8em">×1.7</span></td><td style="padding:4px 10px;text-align:right;color:#facc15">€18.737 <span style="color:#475569;font-size:.8em">×1.9</span></td><td style="padding:4px 10px;text-align:right;color:#60a5fa">€17.955 <span style="color:#475569;font-size:.8em">×1.8</span></td></tr>
-<tr><td style="padding:4px 10px;color:#64748b">2029</td><td style="padding:4px 10px;text-align:right;color:#4ade80">€23.074 <span style="color:#475569;font-size:.8em">×2.3</span></td><td style="padding:4px 10px;text-align:right;color:#facc15">€29.325 <span style="color:#475569;font-size:.8em">×2.9</span></td><td style="padding:4px 10px;text-align:right;color:#60a5fa">€28.128 <span style="color:#475569;font-size:.8em">×2.8</span></td></tr>
-<tr><td style="padding:4px 10px;color:#64748b">2030</td><td style="padding:4px 10px;text-align:right;color:#4ade80">€31.599 <span style="color:#475569;font-size:.8em">×3.2</span></td><td style="padding:4px 10px;text-align:right;color:#facc15">€50.426 <span style="color:#475569;font-size:.8em">×5.0</span></td><td style="padding:4px 10px;text-align:right;color:#60a5fa">€59.625 <span style="color:#475569;font-size:.8em">×6.0</span></td></tr>
-<tr style="font-weight:700"><td style="padding:4px 10px;color:#64748b">2031</td><td style="padding:4px 10px;text-align:right;color:#4ade80">€43.211 <span style="color:#475569;font-size:.8em">×4.3</span></td><td style="padding:4px 10px;text-align:right;color:#facc15">€87.699 <span style="color:#475569;font-size:.8em">×8.8</span></td><td style="padding:4px 10px;text-align:right;color:#60a5fa">€148.026 <span style="color:#475569;font-size:.8em">×14.8</span></td></tr>
-<tr><td style="padding:4px 10px;color:#64748b">2032</td><td style="padding:4px 10px;text-align:right;color:#4ade80">€58.203 <span style="color:#475569;font-size:.8em">×5.8</span></td><td style="padding:4px 10px;text-align:right;color:#facc15">€140.457 <span style="color:#475569;font-size:.8em">×14.0</span></td><td style="padding:4px 10px;text-align:right;color:#60a5fa">€284.102 <span style="color:#475569;font-size:.8em">×28.4</span></td></tr>
-<tr><td style="padding:4px 10px;color:#64748b">2033</td><td style="padding:4px 10px;text-align:right;color:#4ade80">€76.601 <span style="color:#475569;font-size:.8em">×7.7</span></td><td style="padding:4px 10px;text-align:right;color:#facc15">€202.465 <span style="color:#475569;font-size:.8em">×20.2</span></td><td style="padding:4px 10px;text-align:right;color:#60a5fa">€419.991 <span style="color:#475569;font-size:.8em">×42.0</span></td></tr>
-<tr><td style="padding:4px 10px;color:#64748b">2034</td><td style="padding:4px 10px;text-align:right;color:#4ade80">€98.381 <span style="color:#475569;font-size:.8em">×9.8</span></td><td style="padding:4px 10px;text-align:right;color:#facc15">€271.095 <span style="color:#475569;font-size:.8em">×27.1</span></td><td style="padding:4px 10px;text-align:right;color:#60a5fa">€563.764 <span style="color:#475569;font-size:.8em">×56.4</span></td></tr>
-<tr><td style="padding:4px 10px;color:#64748b">2035</td><td style="padding:4px 10px;text-align:right;color:#4ade80">€123.722 <span style="color:#475569;font-size:.8em">×12.4</span></td><td style="padding:4px 10px;text-align:right;color:#facc15">€349.254 <span style="color:#475569;font-size:.8em">×34.9</span></td><td style="padding:4px 10px;text-align:right;color:#60a5fa">€738.293 <span style="color:#475569;font-size:.8em">×73.8</span></td></tr>
-<tr style="font-weight:700"><td style="padding:4px 10px;color:#64748b">2036</td><td style="padding:4px 10px;text-align:right;color:#4ade80">€153.126 <span style="color:#475569;font-size:.8em">×15.3</span></td><td style="padding:4px 10px;text-align:right;color:#facc15">€442.137 <span style="color:#475569;font-size:.8em">×44.2</span></td><td style="padding:4px 10px;text-align:right;color:#60a5fa">€961.364 <span style="color:#475569;font-size:.8em">×96.1</span></td></tr>
+        <tbody><tr style="font-weight:700"><td style="padding:4px 10px;color:#8592a6">2026</td><td style="padding:4px 10px;text-align:right;color:#5cc98d">€10.000 <span style="color:#6b7688;font-size:.8em">×1.0</span></td><td style="padding:4px 10px;text-align:right;color:#e0b341">€10.000 <span style="color:#6b7688;font-size:.8em">×1.0</span></td><td style="padding:4px 10px;text-align:right;color:#6f9bd0">€10.000 <span style="color:#6b7688;font-size:.8em">×1.0</span></td></tr>
+<tr><td style="padding:4px 10px;color:#8592a6">2027</td><td style="padding:4px 10px;text-align:right;color:#5cc98d">€12.903 <span style="color:#6b7688;font-size:.8em">×1.3</span></td><td style="padding:4px 10px;text-align:right;color:#e0b341">€13.248 <span style="color:#6b7688;font-size:.8em">×1.3</span></td><td style="padding:4px 10px;text-align:right;color:#6f9bd0">€13.149 <span style="color:#6b7688;font-size:.8em">×1.3</span></td></tr>
+<tr><td style="padding:4px 10px;color:#8592a6">2028</td><td style="padding:4px 10px;text-align:right;color:#5cc98d">€17.065 <span style="color:#6b7688;font-size:.8em">×1.7</span></td><td style="padding:4px 10px;text-align:right;color:#e0b341">€18.737 <span style="color:#6b7688;font-size:.8em">×1.9</span></td><td style="padding:4px 10px;text-align:right;color:#6f9bd0">€17.955 <span style="color:#6b7688;font-size:.8em">×1.8</span></td></tr>
+<tr><td style="padding:4px 10px;color:#8592a6">2029</td><td style="padding:4px 10px;text-align:right;color:#5cc98d">€23.074 <span style="color:#6b7688;font-size:.8em">×2.3</span></td><td style="padding:4px 10px;text-align:right;color:#e0b341">€29.325 <span style="color:#6b7688;font-size:.8em">×2.9</span></td><td style="padding:4px 10px;text-align:right;color:#6f9bd0">€28.128 <span style="color:#6b7688;font-size:.8em">×2.8</span></td></tr>
+<tr><td style="padding:4px 10px;color:#8592a6">2030</td><td style="padding:4px 10px;text-align:right;color:#5cc98d">€31.599 <span style="color:#6b7688;font-size:.8em">×3.2</span></td><td style="padding:4px 10px;text-align:right;color:#e0b341">€50.426 <span style="color:#6b7688;font-size:.8em">×5.0</span></td><td style="padding:4px 10px;text-align:right;color:#6f9bd0">€59.625 <span style="color:#6b7688;font-size:.8em">×6.0</span></td></tr>
+<tr style="font-weight:700"><td style="padding:4px 10px;color:#8592a6">2031</td><td style="padding:4px 10px;text-align:right;color:#5cc98d">€43.211 <span style="color:#6b7688;font-size:.8em">×4.3</span></td><td style="padding:4px 10px;text-align:right;color:#e0b341">€87.699 <span style="color:#6b7688;font-size:.8em">×8.8</span></td><td style="padding:4px 10px;text-align:right;color:#6f9bd0">€148.026 <span style="color:#6b7688;font-size:.8em">×14.8</span></td></tr>
+<tr><td style="padding:4px 10px;color:#8592a6">2032</td><td style="padding:4px 10px;text-align:right;color:#5cc98d">€58.203 <span style="color:#6b7688;font-size:.8em">×5.8</span></td><td style="padding:4px 10px;text-align:right;color:#e0b341">€140.457 <span style="color:#6b7688;font-size:.8em">×14.0</span></td><td style="padding:4px 10px;text-align:right;color:#6f9bd0">€284.102 <span style="color:#6b7688;font-size:.8em">×28.4</span></td></tr>
+<tr><td style="padding:4px 10px;color:#8592a6">2033</td><td style="padding:4px 10px;text-align:right;color:#5cc98d">€76.601 <span style="color:#6b7688;font-size:.8em">×7.7</span></td><td style="padding:4px 10px;text-align:right;color:#e0b341">€202.465 <span style="color:#6b7688;font-size:.8em">×20.2</span></td><td style="padding:4px 10px;text-align:right;color:#6f9bd0">€419.991 <span style="color:#6b7688;font-size:.8em">×42.0</span></td></tr>
+<tr><td style="padding:4px 10px;color:#8592a6">2034</td><td style="padding:4px 10px;text-align:right;color:#5cc98d">€98.381 <span style="color:#6b7688;font-size:.8em">×9.8</span></td><td style="padding:4px 10px;text-align:right;color:#e0b341">€271.095 <span style="color:#6b7688;font-size:.8em">×27.1</span></td><td style="padding:4px 10px;text-align:right;color:#6f9bd0">€563.764 <span style="color:#6b7688;font-size:.8em">×56.4</span></td></tr>
+<tr><td style="padding:4px 10px;color:#8592a6">2035</td><td style="padding:4px 10px;text-align:right;color:#5cc98d">€123.722 <span style="color:#6b7688;font-size:.8em">×12.4</span></td><td style="padding:4px 10px;text-align:right;color:#e0b341">€349.254 <span style="color:#6b7688;font-size:.8em">×34.9</span></td><td style="padding:4px 10px;text-align:right;color:#6f9bd0">€738.293 <span style="color:#6b7688;font-size:.8em">×73.8</span></td></tr>
+<tr style="font-weight:700"><td style="padding:4px 10px;color:#8592a6">2036</td><td style="padding:4px 10px;text-align:right;color:#5cc98d">€153.126 <span style="color:#6b7688;font-size:.8em">×15.3</span></td><td style="padding:4px 10px;text-align:right;color:#e0b341">€442.137 <span style="color:#6b7688;font-size:.8em">×44.2</span></td><td style="padding:4px 10px;text-align:right;color:#6f9bd0">€961.364 <span style="color:#6b7688;font-size:.8em">×96.1</span></td></tr>
 </tbody>
       </table>
       </div>
@@ -378,7 +388,7 @@
   </div>
 
   <!-- Footer -->
-  <div style="text-align:center;color:#334155;font-size:.75rem;margin-top:24px;line-height:1.8">
+  <div style="text-align:center;color:#55617a;font-size:.75rem;margin-top:24px;line-height:1.8">
     V(t) = Capital × (1+r)ᵗ × Φ_L(t) &nbsp;·&nbsp; Φ_L(t) = 1 + K/(1+e^(−γ·(t−t₀)))<br>
     Fuente: Yahoo Finance · Actualizado: 2026-09-12 20:30<br>
     Qmetrika Labs
