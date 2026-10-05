@@ -1,211 +1,211 @@
 {
-  "updated": "2026-10-02 07:25",
+  "updated": "2026-10-05 07:43",
   "indicadores": {
     "VIX": {
       "nombre": "VIX Volatilidad",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 16.39,
-      "fecha": "2026-10-01",
-      "chg_1d": 0.31,
-      "chg_1sem": 4.59,
-      "chg_1mes": 7.83
+      "valor": 16.32,
+      "fecha": "2026-10-05",
+      "chg_1d": 6.6,
+      "chg_1sem": 1.56,
+      "chg_1mes": 12.32
     },
     "SP500": {
       "nombre": "S&P 500",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 7666.45,
-      "fecha": "2026-10-01",
-      "chg_1d": 0.19,
-      "chg_1sem": -0.49,
-      "chg_1mes": 0.46
+      "valor": 7722.72,
+      "fecha": "2026-10-02",
+      "chg_1d": 0.73,
+      "chg_1sem": -0.27,
+      "chg_1mes": 0.73
     },
     "NASDAQ": {
       "nombre": "NASDAQ Composite",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 26871.6,
-      "fecha": "2026-10-01",
-      "chg_1d": 0.04,
-      "chg_1sem": -0.25,
-      "chg_1mes": 2.96
+      "valor": 27190.86,
+      "fecha": "2026-10-02",
+      "chg_1d": 1.19,
+      "chg_1sem": 0.45,
+      "chg_1mes": 3.71
     },
     "STOXX50": {
       "nombre": "Euro Stoxx 50",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 6195.19,
-      "fecha": "2026-10-02",
-      "chg_1d": 0.32,
-      "chg_1sem": -1.71,
-      "chg_1mes": -2.94
+      "valor": 6221.96,
+      "fecha": "2026-10-05",
+      "chg_1d": -0.27,
+      "chg_1sem": -1.26,
+      "chg_1mes": -2.67
     },
     "US10Y": {
       "nombre": "Bono EEUU 10 años",
       "unidad": "%",
       "decimales": 3,
       "chg_unit": "bp",
-      "valor": 5.237,
-      "fecha": "2026-10-01",
-      "chg_1d": -5.6,
-      "chg_1sem": 7.5,
-      "chg_1mes": 44.1
+      "valor": 5.277,
+      "fecha": "2026-10-02",
+      "chg_1d": 4.0,
+      "chg_1sem": 9.3,
+      "chg_1mes": 48.1
     },
     "US13W": {
       "nombre": "T-Bill 13 semanas",
       "unidad": "%",
       "decimales": 3,
       "chg_unit": "bp",
-      "valor": 3.982,
-      "fecha": "2026-10-01",
-      "chg_1d": -4.8,
-      "chg_1sem": -8.6,
-      "chg_1mes": 21.0
+      "valor": 3.993,
+      "fecha": "2026-10-02",
+      "chg_1d": 1.1,
+      "chg_1sem": -7.7,
+      "chg_1mes": 22.1
     },
     "EURUSD": {
       "nombre": "EUR / USD",
       "unidad": "",
       "decimales": 4,
       "chg_unit": "%",
-      "valor": 1.1266,
-      "fecha": "2026-10-02",
-      "chg_1d": -0.54,
-      "chg_1sem": -0.96,
-      "chg_1mes": -2.75
+      "valor": 1.121,
+      "fecha": "2026-10-05",
+      "chg_1d": -0.36,
+      "chg_1sem": -1.48,
+      "chg_1mes": -3.59
     },
     "USDIDX": {
       "nombre": "Índice USD (DXY)",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 101.86,
-      "fecha": "2026-10-02",
-      "chg_1d": -0.24,
-      "chg_1sem": 0.88,
-      "chg_1mes": 2.31
+      "valor": 102.26,
+      "fecha": "2026-10-05",
+      "chg_1d": 0.32,
+      "chg_1sem": 1.05,
+      "chg_1mes": 3.29
     },
     "GOLD": {
       "nombre": "Oro (USD/oz)",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 4216.5,
-      "fecha": "2026-10-02",
-      "chg_1d": 0.34,
-      "chg_1sem": -2.42,
-      "chg_1mes": -4.49
+      "valor": 4182.2,
+      "fecha": "2026-10-05",
+      "chg_1d": 0.48,
+      "chg_1sem": 0.33,
+      "chg_1mes": -7.88
     },
     "OIL": {
       "nombre": "Petróleo WTI (USD/bbl)",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 91.43,
-      "fecha": "2026-10-02",
-      "chg_1d": -1.55,
-      "chg_1sem": -1.06,
-      "chg_1mes": 0.46
+      "valor": 89.72,
+      "fecha": "2026-10-05",
+      "chg_1d": -1.53,
+      "chg_1sem": -3.11,
+      "chg_1mes": -1.73
     },
     "COPPER": {
       "nombre": "Cobre (USD/lb)",
       "unidad": "",
       "decimales": 4,
       "chg_unit": "%",
-      "valor": 6.584,
-      "fecha": "2026-10-02",
-      "chg_1d": 1.57,
-      "chg_1sem": -1.67,
-      "chg_1mes": 1.28
+      "valor": 6.581,
+      "fecha": "2026-10-05",
+      "chg_1d": 1.37,
+      "chg_1sem": 0.23,
+      "chg_1mes": 0.06
     },
     "URANIUM": {
       "nombre": "Uranio · Cameco (USD)",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 85.69,
-      "fecha": "2026-10-01",
-      "chg_1d": -1.13,
-      "chg_1sem": -2.76,
-      "chg_1mes": -10.98
+      "valor": 85.18,
+      "fecha": "2026-10-02",
+      "chg_1d": -0.6,
+      "chg_1sem": -3.28,
+      "chg_1mes": -11.62
     },
     "GAS": {
       "nombre": "Gas Natural (USD/MMBtu)",
       "unidad": "",
       "decimales": 3,
       "chg_unit": "%",
-      "valor": 2.916,
-      "fecha": "2026-10-02",
-      "chg_1d": -1.72,
-      "chg_1sem": -8.76,
-      "chg_1mes": -1.35
+      "valor": 3.022,
+      "fecha": "2026-10-05",
+      "chg_1d": -0.43,
+      "chg_1sem": 0.73,
+      "chg_1mes": 3.74
     },
     "XLU": {
       "nombre": "Utilities EEUU (XLU)",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 39.68,
-      "fecha": "2026-10-01",
-      "chg_1d": 0.61,
+      "valor": 39.83,
+      "fecha": "2026-10-02",
+      "chg_1d": 0.38,
       "chg_1sem": 0.81,
-      "chg_1mes": -6.08
+      "chg_1mes": -5.97
     },
     "SOX": {
       "nombre": "Semiconductores (SOX)",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 12829.0,
-      "fecha": "2026-10-01",
-      "chg_1d": 1.59,
-      "chg_1sem": 2.69,
-      "chg_1mes": 13.65
+      "valor": 13136.67,
+      "fecha": "2026-10-02",
+      "chg_1d": 2.4,
+      "chg_1sem": 3.69,
+      "chg_1mes": 15.85
     },
     "ROBO": {
       "nombre": "Robótica global (ROBO ETF)",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 81.01,
-      "fecha": "2026-10-01",
-      "chg_1d": 0.68,
-      "chg_1sem": 0.78,
-      "chg_1mes": 2.71
+      "valor": 82.82,
+      "fecha": "2026-10-02",
+      "chg_1d": 2.23,
+      "chg_1sem": 2.17,
+      "chg_1mes": 5.02
     },
     "QTUM": {
       "nombre": "Computación Cuántica (QTUM)",
       "unidad": "",
       "decimales": 2,
       "chg_unit": "%",
-      "valor": 153.25,
-      "fecha": "2026-10-01",
-      "chg_1d": 1.08,
-      "chg_1sem": 0.51,
-      "chg_1mes": 6.33
+      "valor": 156.06,
+      "fecha": "2026-10-02",
+      "chg_1d": 1.83,
+      "chg_1sem": 1.52,
+      "chg_1mes": 8.16
     },
     "BTC": {
       "nombre": "Bitcoin (USD)",
       "unidad": "",
       "decimales": 0,
       "chg_unit": "%",
-      "valor": 85937.09,
-      "fecha": "2026-10-02",
-      "chg_1d": 1.28,
-      "chg_1sem": 1.75,
-      "chg_1mes": 11.36
+      "valor": 86359.07,
+      "fecha": "2026-10-05",
+      "chg_1d": -0.14,
+      "chg_1sem": 3.36,
+      "chg_1mes": 10.49
     },
     "SPREAD": {
       "nombre": "Curva tipos 10Y−13W",
       "unidad": "%",
       "decimales": 3,
       "chg_unit": "bp",
-      "valor": 1.255,
-      "fecha": "2026-10-01",
+      "valor": 1.284,
+      "fecha": "2026-10-02",
       "chg_1d": null,
       "chg_1sem": null,
       "chg_1mes": null
@@ -215,11 +215,11 @@
       "unidad": "%",
       "decimales": 2,
       "chg_unit": "bp",
-      "valor": 2.93,
-      "fecha": "2026-09-30",
+      "valor": 2.88,
+      "fecha": "2026-10-01",
       "chg_1d": null,
-      "chg_1sem": 17.0,
-      "chg_1mes": 49.0
+      "chg_1sem": 3.0,
+      "chg_1mes": 44.0
     },
     "BREAKEVEN": {
       "nombre": "Inflación esperada 10a",
@@ -227,10 +227,10 @@
       "decimales": 2,
       "chg_unit": "bp",
       "valor": 2.36,
-      "fecha": "2026-10-01",
+      "fecha": "2026-10-02",
       "chg_1d": null,
-      "chg_1sem": 3.0,
-      "chg_1mes": 1.0
+      "chg_1sem": 2.0,
+      "chg_1mes": 2.0
     },
     "M2": {
       "nombre": "M2 EE.UU. (bn $)",
@@ -259,20 +259,20 @@
       "unidad": "%",
       "decimales": 2,
       "chg_unit": "bp",
-      "valor": 3.12,
-      "fecha": "2026-09-30",
+      "valor": 3.24,
+      "fecha": "2026-10-01",
       "chg_1d": null,
-      "chg_1sem": 39.0,
-      "chg_1mes": 49.0
+      "chg_1sem": 44.0,
+      "chg_1mes": 59.0
     },
     "COPPER_STOCK": {
       "nombre": "Inventario cobre LME (t)",
       "unidad": "t",
       "decimales": 0,
       "chg_unit": "%",
-      "valor": 248075,
-      "fecha": "2026-10-02",
-      "chg_1d": -0.53,
+      "valor": 248650,
+      "fecha": "2026-10-05",
+      "chg_1d": 0.23,
       "chg_1sem": null,
       "chg_1mes": null
     },
@@ -282,8 +282,8 @@
       "decimales": 2,
       "chg_unit": "%",
       "valor": 89.75,
-      "fecha": "2026-10-02",
-      "chg_1d": -0.13,
+      "fecha": "2026-10-05",
+      "chg_1d": 0.28,
       "chg_1sem": null,
       "chg_1mes": null
     }
